@@ -5,7 +5,7 @@ BIN = bin
 CXX = g++
 CPPFLAGS = -Wall -g  -I$(INC) -c
 
-all:  
+all:
 
 # ************ Generación de documentación ******************
 documentacion:
@@ -17,4 +17,4 @@ clean :
 	-rm $(OBJ)/* $(SRC)/*~ $(INC)/*~ ./*~
 
 mrproper : clean
-	-rm $(BIN)/* doc/html/*
+	-rm $(BIN)/* doc/html/* doc/doxygen_sqlite3.db
