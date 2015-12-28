@@ -62,3 +62,9 @@
 
 # Debug files
 *.dSYM/
+
+# Documentacion
+*.html
+*.js
+doc/html/*
+*.db

@@ -1,3 +1,39 @@
+//Destruye el nodo n y sus descendientes
+template <class Tbase>
+void ArbolGeneral<Tbase>::destruir(nodo *n){
+  //IMPLEMENTAR AUN-----------------------
+}
+
+//Copia subarbol
+template <class Tbase>
+void ArbolGeneral<Tbase>::copiar(nodo *& dest, nodo * orig){
+  //IMPLEMENTAR AUN-----------------------
+}
+
+//Cuenta el numero de nodos que cuelgan de n
+template <class Tbase>
+int ArbolGeneral<Tbase>::contar(const nodo *n) const{
+  //IMPLEMENTAR AUN-----------------------
+}
+
+//Comprueba si 2 subarboles son iguales
+template <class Tbase>
+bool ArbolGeneral<Tbase>::soniguales(const nodo *n1, const nodo *n2) const{
+  //IMPLEMENTAR AUN-----------------------
+}
+
+//Escribe subarbol en la salida
+template <class Tbase>
+void ArbolGeneral<Tbase>::escribe_arbol(std::ostream& out, nodo *nod) const{
+  //IMPLEMENTAR AUN-----------------------
+}
+
+//Lee un arbol
+template <class Tbase>
+void ArbolGeneral<Tbase>::lee_arbol(std::istream& in, nodo *& nod){
+  //IMPLEMENTAR AUN-----------------------
+}
+
 //Constructor por defecto
 template <class Tbase>
 ArbolGeneral<Tbase>::ArbolGeneral(){
@@ -143,7 +179,7 @@ std::ostream& operator<<(std::ostream& out, const ArbolGeneral<T>& v){
   //IMPLEMENTAR AUN-----------------------
 }
 
-//ITERADOR NO CONSTANTE----------------------------------------------
+//----ITERADOR NO CONSTANTE----------------------------------------------
 
 //Constructor del iterador
 template <class Tbase>
