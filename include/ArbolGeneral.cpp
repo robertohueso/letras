@@ -148,7 +148,9 @@ std::ostream& operator<<(std::ostream& out, const ArbolGeneral<T>& v){
 //Constructor del iterador
 template <class Tbase>
 ArbolGeneral<Tbase>::iter_preorden::iter_preorden(){
-  //IMPLEMENTAR AUN-----------------------
+  this->it = NULL;
+  this->raiz = NULL;
+  this->level = 0;
 }
 
 //Devuelve la etiqueta del nodo
@@ -160,13 +162,27 @@ Tbase& ArbolGeneral<Tbase>::iter_preorden::operator*(){
 //Devuelve el nivel del nodo
 template <class Tbase>
 int ArbolGeneral<Tbase>::iter_preorden::getlevel() const{
-  //IMPLEMENTAR AUN-----------------------
+  return this->level;
 }
 
 //Siguiente nodo
 template <class Tbase>
 ArbolGeneral<Tbase>::iter_preorden& ArbolGeneral<Tbase>::iter_preorden::operator ++(){
-  //IMPLEMENTAR AUN-----------------------
+  if(it->izqda != NULL)
+    it = it->izqda;
+  else if(it->drcha != NULL)
+    it = it->drcha;
+  else{
+    while(it->padre != NULL && it->padre->drcha == NULL){
+      it = it->padre;
+    }
+    if(it->padre == NULL){
+      iterador.it = NULL;
+      iterador.raiz = this->laraiz;
+    }else {
+      it = it->padre->drcha;
+    }
+  }
 }
 
 //Compara la igualdad de 2 iteradores
@@ -179,4 +195,24 @@ bool ArbolGeneral<Tbase>::iter_preorden::operator==(const iter_preorden &i){
 template <class Tbase>
 bool ArbolGeneral<Tbase>::iter_preorden::operator!=(const iter_preorden &i){
   return (this->it != i.it || this->raiz != i.raiz);
+}
+
+//Iterator begin
+template <class Tbase>
+ArbolGeneral<Tbase>::iter_preorden ArbolGeneral<Tbase>::begin(){
+  ArbolGeneral<Tbase>::iter_preorden iterador;
+  iterador.it = this->laraiz;
+  iterador.raiz = this->laraiz;
+  iterador.level = 0;
+  return iterador;
+}
+
+//Iterator end
+template <class Tbase>
+ArbolGeneral<Tbase>::iter_preorden ArbolGeneral<Tbase>::end(){
+  ArbolGeneral<Tbase>::iter_preorden iterador;
+  iterador.it = NULL;
+  iterador.raiz = this->laraiz;
+  iterador.level = 0;
+  return iterador;
 }
