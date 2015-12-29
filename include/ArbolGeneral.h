@@ -86,6 +86,13 @@ class ArbolGeneral{
         * es la raíz.
         */
        nodo *padre;
+
+       /**
+         * @brief Constructor con parametros
+         *
+         * Se crea el objeto nodo con los parametros que se le dan.
+         */
+        nodo(const Tbase &etiqueta, nodo *izqda, nodo *drcha, nodo *padre);
     };
 
     /**

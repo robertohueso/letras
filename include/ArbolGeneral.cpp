@@ -1,13 +1,29 @@
+//Constructor parametros nodo
+template <class Tbase>
+ArbolGeneral<Tbase>::nodo::nodo(const Tbase &etiqueta, nodo *izqda, nodo *drcha, nodo *padre)
+  : etiqueta(etiqueta), izqda(izqda), drcha(drcha), padre(padre)
+  {}
+
 //Destruye el nodo n y sus descendientes
 template <class Tbase>
 void ArbolGeneral<Tbase>::destruir(nodo *n){
-  //IMPLEMENTAR AUN-----------------------
+  if(n != NULL){
+    destruir(n->izqda);
+    destruir(n->drcha);
+    delete n;
+  }
 }
 
 //Copia subarbol
 template <class Tbase>
 void ArbolGeneral<Tbase>::copiar(nodo *& dest, nodo * orig){
-  //IMPLEMENTAR AUN-----------------------
+  dest = new nodo(orig->etiqueta, NULL, NULL, NULL);
+
+  //CREO QUE HAY UN ERROR EN EL ENUNCIADO DE LA FUNCION. FIXME
+  if(orig->izqda != NULL)
+    this->copiar(dest->izqda, orig->izqda);
+  if(orig->drcha != NULL)
+    this->copiar(dest->drcha, orig->drcha);
 }
 
 //Cuenta el numero de nodos que cuelgan de n
