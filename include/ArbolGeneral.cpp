@@ -29,19 +29,31 @@ void ArbolGeneral<Tbase>::copiar(nodo *& dest, nodo * orig){
 //Cuenta el numero de nodos que cuelgan de n
 template <class Tbase>
 int ArbolGeneral<Tbase>::contar(const nodo *n) const{
-  //IMPLEMENTAR AUN-----------------------
+  int tamanio = 1;
+  for(Nodo hijo = n->izqda; hijo != NULL; hijo = hijo->drcha)
+    tamanio = tamanio + this->contar(hijo);
+  return tamanio;
 }
 
 //Comprueba si 2 subarboles son iguales
 template <class Tbase>
 bool ArbolGeneral<Tbase>::soniguales(const nodo *n1, const nodo *n2) const{
-  //IMPLEMENTAR AUN-----------------------
+  if(n1->etiqueta == n2->etiqueta && soniguales(n1->izqda, n2->izqda) && soniguales(n1->drcha, n2->drcha))
+    return true;
+  else
+    return false;
 }
 
 //Escribe subarbol en la salida
 template <class Tbase>
 void ArbolGeneral<Tbase>::escribe_arbol(std::ostream& out, nodo *nod) const{
-  //IMPLEMENTAR AUN-----------------------
+  if(nod == NULL)
+    out << "x"
+  else{
+    out << "n " << nod->etiqueta;
+    escribe_arbol(out, nod->izqda);
+    escribe_arbol(out, nod->drcha);
+  }
 }
 
 //Lee un arbol
