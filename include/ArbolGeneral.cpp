@@ -64,9 +64,8 @@ void ArbolGeneral<Tbase>::lee_arbol(std::istream& in, nodo *& nod){
 
 //Constructor por defecto
 template <class Tbase>
-ArbolGeneral<Tbase>::ArbolGeneral(){
-  this->laraiz = NULL;
-}
+ArbolGeneral<Tbase>::ArbolGeneral(): laraiz(NULL)
+  {}
 
 //Constructor raiz
 template <class Tbase>
@@ -84,7 +83,7 @@ ArbolGeneral<Tbase>::ArbolGeneral(const ArbolGeneral<Tbase>& v){
 //Destructor
 template <class Tbase>
 ArbolGeneral<Tbase>::~ArbolGeneral(){
-  //IMPLEMENTAR AUN-----------------------
+  this->destruir(this->laraiz);
 }
 
 //Operador =
@@ -174,7 +173,7 @@ void ArbolGeneral<Tbase>::clear(){
 //Devuelve cantidad de nodos del arbol
 template <class Tbase>
 int ArbolGeneral<Tbase>::size() const{
-  //IMPLEMENTAR AUN-----------------------
+  return this->contar(this->laraiz);
 }
 
 //Comprueba si el arbol esta vacio
