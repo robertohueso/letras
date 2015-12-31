@@ -18,7 +18,8 @@ void ArbolGeneral<Tbase>::destruir(nodo *n){
 template <class Tbase>
 void ArbolGeneral<Tbase>::copiar(nodo *& dest, nodo * orig){
   dest = new nodo(orig->etiqueta, NULL, NULL, NULL);
-
+  
+  //IMPLEMENTAR AUN-----------------------
   //CREO QUE HAY UN ERROR EN EL ENUNCIADO DE LA FUNCION. FIXME
   if(orig->izqda != NULL)
     this->copiar(dest->izqda, orig->izqda);
@@ -95,7 +96,8 @@ ArbolGeneral<Tbase>& ArbolGeneral<Tbase>::operator=(const ArbolGeneral<Tbase> &v
 //Asigna raiz
 template <class Tbase>
 void ArbolGeneral<Tbase>::AsignaRaiz(const Tbase& e){
-  //IMPLEMENTAR AUN-----------------------
+  this->destruir(this->laraiz);
+  this->laraiz = new nodo(e, NULL, NULL, NULL);
 }
 
 //Devuelve la raiz
@@ -167,7 +169,8 @@ void ArbolGeneral<Tbase>::insertar_hermanoderecha(Nodo n, ArbolGeneral<Tbase>& r
 //Vacia el arbol
 template <class Tbase>
 void ArbolGeneral<Tbase>::clear(){
-  //IMPLEMENTAR AUN-----------------------
+  this->destruir(this->laraiz);
+  this->laraiz = NULL;
 }
 
 //Devuelve cantidad de nodos del arbol
@@ -185,13 +188,13 @@ bool ArbolGeneral<Tbase>::empty() const{
 //Comprueba si dos los arboles son iguales
 template <class Tbase>
 bool ArbolGeneral<Tbase>::operator==(const ArbolGeneral<Tbase>& v) const{
-  //IMPLEMENTAR AUN-----------------------
+  return this->soniguales(this->laraiz, v.laraiz);
 }
 
 //Comprueba si dos los arboles son diferentes
 template <class Tbase>
 bool ArbolGeneral<Tbase>::operator!=(const ArbolGeneral<Tbase>& v) const{
-  //IMPLEMENTAR AUN-----------------------
+  return !(this->soniguales(this->laraiz, v.laraiz));
 }
 
 //Operator >> para insertar el arbol en v
@@ -203,7 +206,8 @@ std::istream& operator>>(std::istream& in, ArbolGeneral<T>& v){
 //Operator << para imprimir el arbol v
 template <class T>
 std::ostream& operator<<(std::ostream& out, const ArbolGeneral<T>& v){
-  //IMPLEMENTAR AUN-----------------------
+  v.escribe_arbol(out, v.laraiz);
+  return out;
 }
 
 //----ITERADOR NO CONSTANTE----------------------------------------------
