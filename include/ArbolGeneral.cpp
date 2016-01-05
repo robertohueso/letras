@@ -14,18 +14,18 @@ void ArbolGeneral<Tbase>::destruir(nodo *n){
   }
 }
 
-//Copia subarbol
+//Copia subarbol FIXME
+//no es lo mas apropiado
 template <class Tbase>
-void ArbolGeneral<Tbase>::copiar(nodo *& dest, nodo * orig){
-  dest = new nodo(orig->etiqueta, NULL, NULL, NULL);
-  
-  //IMPLEMENTAR AUN-----------------------
-  //CREO QUE HAY UN ERROR EN EL ENUNCIADO DE LA FUNCION. FIXME
+void ArbolGeneral<Tbase>::copiar(nodo *& dest, nodo * orig, nodo * padre, bool copiar_hermanos){
+  dest = new nodo(orig->etiqueta, NULL, NULL, padre);
+
   if(orig->izqda != NULL)
-    this->copiar(dest->izqda, orig->izqda);
-  if(orig->drcha != NULL)
-    this->copiar(dest->drcha, orig->drcha);
+    this->copiar(dest->izqda, orig->izqda, dest, true);
+  if(copiar_hermanos && orig->drcha != NULL)
+    this->copiar(dest->drcha, orig->drcha, padre, true);
 }
+
 
 //Cuenta el numero de nodos que cuelgan de n
 template <class Tbase>
@@ -78,7 +78,7 @@ ArbolGeneral<Tbase>::ArbolGeneral(const Tbase& e){
 //Constructor copia
 template <class Tbase>
 ArbolGeneral<Tbase>::ArbolGeneral(const ArbolGeneral<Tbase>& v){
-  //IMPLEMENTAR AUN-----------------------
+  this->copiar(this->laraiz, v.laraiz);
 }
 
 //Destructor
@@ -90,7 +90,9 @@ ArbolGeneral<Tbase>::~ArbolGeneral(){
 //Operador =
 template <class Tbase>
 ArbolGeneral<Tbase>& ArbolGeneral<Tbase>::operator=(const ArbolGeneral<Tbase> &v){
-  //IMPLEMENTAR AUN-----------------------
+  this->destruir(this->laraiz);
+  this->copiar(this->laraiz, v.laraiz, NULL);
+  return this;
 }
 
 //Asigna raiz

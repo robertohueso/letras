@@ -112,6 +112,33 @@ class ArbolGeneral{
     void destruir(nodo * n);
 
     /**
+    FIXME
+      * @brief Copia un subárbol conocido su padre
+      * @param dest Referencia al puntero del que cuelga la copia
+      * @param orig Puntero a la raíz del subárbol a copiar
+      * @param padre Puntero al padre del nuevo subarbol
+      * @param copiar_hermanos Decide si se deben copiar los nodos hermanos de orig
+      *
+      * Hace una copia de todo el subárbol que cuelga de \e orig en el puntero
+      * \e dest. Es importante ver que en \e dest->padre (si existe) no se
+      * asigna ningún valor, pues no se conoce.
+      */
+
+      void copiar(nodo *& dest, nodo * orig, nodo * padre = NULL, bool copiar_hermanos = false);
+
+      /**
+        * @brief Copia un subárbol
+        * @param dest Referencia al puntero del que cuelga la copia
+        * @param orig Puntero a la raíz del subárbol a copiar
+        *
+        * Hace una copia de todo el subárbol que cuelga de \e orig en el puntero
+        * \e dest. Es importante ver que en \e dest->padre (si existe) no se
+        * asigna ningún valor, pues no se conoce.
+        */
+
+    //FIXME void copiar(nodo *& dest, nodo * orig, nodo * padre);
+
+    /**
       * @brief Copia un subárbol
       * @param dest Referencia al puntero del que cuelga la copia
       * @param orig Puntero a la raíz del subárbol a copiar
@@ -120,7 +147,7 @@ class ArbolGeneral{
       * \e dest. Es importante ver que en \e dest->padre (si existe) no se
       * asigna ningún valor, pues no se conoce.
       */
-    void copiar(nodo *& dest, nodo * orig);
+    //FIXME void copiar(nodo *& dest, nodo * orig);
 
     /**
       * @brief Cuenta el número de nodos
