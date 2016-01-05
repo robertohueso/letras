@@ -141,13 +141,20 @@ const Tbase& ArbolGeneral<Tbase>::etiqueta(const Nodo n) const{
 //Copia arbol en subarbol
 template <class Tbase>
 void ArbolGeneral<Tbase>::asignar_subarbol(const ArbolGeneral<Tbase>& orig, const Nodo nod){
-  //IMPLEMENTAR AUN-----------------------
+  this->destruir(this->laraiz);
+  this->copiar(this->root, nod, NULL);
 }
 
 //Poda el hijo a la izquierda de n y lo copia en dest
 template <class Tbase>
 void ArbolGeneral<Tbase>::podar_hijomasizquierda(Nodo n, ArbolGeneral<Tbase>& dest){
-  //IMPLEMENTAR AUN-----------------------
+  if(!(dest.empty()))
+    dest.clear();
+  if(n->izqda != NULL){
+    dest.laraiz = n->izqda;
+    dest.laraiz->padre = NULL;
+    n->izqda = NULL;
+  }
 }
 
 //Poda el hermano a la derecha de n y lo copia en dest
