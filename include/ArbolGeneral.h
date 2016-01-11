@@ -129,7 +129,7 @@ class ArbolGeneral{
       * asigna ningún valor, pues no se conoce.
       */
 
-      void copiar(nodo *& dest, nodo * orig);
+      void copiar(nodo *& dest, nodo * orig, nodo * padre = NULL, bool copiar_hermanos = false);
 
       /**
         * @brief Copia un subárbol

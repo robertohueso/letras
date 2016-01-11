@@ -26,23 +26,13 @@ void ArbolGeneral<Tbase>::destruirConHermanos(nodo *n){
 //Copia subarbol FIXME
 //no es lo mas apropiado
 template <class Tbase>
-void ArbolGeneral<Tbase>::copiar(nodo *& dest, nodo * orig){
-  dest = new nodo(orig->etiqueta, NULL, NULL, NULL);
+void ArbolGeneral<Tbase>::copiar(nodo *& dest, nodo * orig, nodo * padre, bool copiar_hermanos){
+  dest = new nodo(orig->etiqueta, NULL, NULL, padre);
 
-  if(orig->izqda != NULL){
-    nodo * nodo_actual = orig->izqda;
-    while(nodo_actual != NULL){
-      this->copiar(, nodo_actual);
-      nodo_actual = nodo_actual->drcha;
-    }
-  }
-
-  nodo * nodo_actual = orig->izqda;
-  while(nodo_actual != NULL){
-    this->copiar(dest->izqda, nodo_actual);
-    dest->izqda->padre = dest;
-    nodo_actual = nodo_actual->drcha;
-  }
+  if(orig->izqda != NULL)
+    this->copiar(dest->izqda, orig->izqda, dest, true);
+  if(copiar_hermanos && orig->drcha != NULL)
+    this->copiar(dest->drcha, orig->drcha, padre, true);
 }
 
 
