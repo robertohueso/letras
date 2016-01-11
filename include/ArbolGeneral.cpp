@@ -182,13 +182,25 @@ void ArbolGeneral<Tbase>::podar_hermanoderecha(Nodo n, ArbolGeneral<Tbase>& dest
 //Inserta como hijo a la izquierda de n el arbol rama
 template <class Tbase>
 void ArbolGeneral<Tbase>::insertar_hijomasizquierda(Nodo n, ArbolGeneral<Tbase>& rama){
-  //IMPLEMENTAR AUN-----------------------
+  if(!(rama.empty())){
+    Nodo aux = n->izqda;
+    n->izqda = rama.laraiz;
+    n->izqda->padre = n;
+    n->izqda->drcha = aux;
+    rama.laraiz = NULL;
+  }
 }
 
 //Inserta como hermano a la derecha de n el arbol rama
 template <class Tbase>
 void ArbolGeneral<Tbase>::insertar_hermanoderecha(Nodo n, ArbolGeneral<Tbase>& rama){
-  //IMPLEMENTAR AUN-----------------------
+  if(!(rama.empty())){
+    Nodo aux = n->drcha;
+    n->drcha = rama.laraiz;
+    n->drcha->padre = n->padre;
+    n->drcha->drcha = aux;
+    rama.laraiz = NULL;
+  }
 }
 
 //Vacia el arbol
