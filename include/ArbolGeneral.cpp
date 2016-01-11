@@ -4,16 +4,21 @@ ArbolGeneral<Tbase>::nodo::nodo(const Tbase &etiqueta, nodo *izqda, nodo *drcha,
   : etiqueta(etiqueta), izqda(izqda), drcha(drcha), padre(padre)
   {}
 
-//Destruye el nodo n y sus descendientes FIXME
+//Destruye el nodo n y sus descendientes.
 template <class Tbase>
 void ArbolGeneral<Tbase>::destruir(nodo *n){
   if(n != NULL){
-    nodo * nodo_actual = n->izqda;
-    while(nodo_actual != NULL){
-      nodo * nodo_aux = nodo_actual
-      destruir(nodo_actual->drcha);
-    }
-    destruir(n->izqda);
+    this->destruirConHermanos(n->izqda);
+    delete n;
+  }
+}
+
+//Destruye el nodo n, sus descendientes y sus hermanos.
+template <class Tbase>
+void ArbolGeneral<Tbase>::destruirConHermanos(nodo *n){
+  if(n != NULL){
+    this->destruirConHermanos(n->izqda);
+    this->destruirConHermanos(n->drcha);
     delete n;
   }
 }

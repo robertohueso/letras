@@ -112,6 +112,11 @@ class ArbolGeneral{
     void destruir(nodo * n);
 
     /**
+      * @brief FIXME documentar
+      */
+    void destruirConHermanos(nodo * n);
+
+    /**
     FIXME
       * @brief Copia un subárbol conocido su padre
       * @param dest Referencia al puntero del que cuelga la copia
