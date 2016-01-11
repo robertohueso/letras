@@ -23,8 +23,7 @@ void ArbolGeneral<Tbase>::destruirConHermanos(nodo *n){
   }
 }
 
-//Copia subarbol FIXME
-//no es lo mas apropiado
+//Copia subarbol
 template <class Tbase>
 void ArbolGeneral<Tbase>::copiar(nodo *& dest, nodo * orig, nodo * padre, bool copiar_hermanos){
   dest = new nodo(orig->etiqueta, NULL, NULL, padre);
@@ -162,6 +161,7 @@ void ArbolGeneral<Tbase>::podar_hijomasizquierda(Nodo n, ArbolGeneral<Tbase>& de
   if(n->izqda != NULL){
     dest.laraiz = n->izqda;
     dest.laraiz->padre = NULL;
+    dest.laraiz->drcha = NULL;
     n->izqda = NULL;
   }
 }
@@ -169,7 +169,14 @@ void ArbolGeneral<Tbase>::podar_hijomasizquierda(Nodo n, ArbolGeneral<Tbase>& de
 //Poda el hermano a la derecha de n y lo copia en dest
 template <class Tbase>
 void ArbolGeneral<Tbase>::podar_hermanoderecha(Nodo n, ArbolGeneral<Tbase>& dest){
-  //IMPLEMENTAR AUN-----------------------
+  if(!(dest.empty()))
+    dest.clear();
+  if(n->drcha != NULL){
+    dest.laraiz = n->drcha;
+    dest.laraiz->padre = NULL;
+    dest.laraiz->drcha = NULL;
+    n->izqda = NULL;
+  }
 }
 
 //Inserta como hijo a la izquierda de n el arbol rama
