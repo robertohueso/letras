@@ -4,12 +4,16 @@ ArbolGeneral<Tbase>::nodo::nodo(const Tbase &etiqueta, nodo *izqda, nodo *drcha,
   : etiqueta(etiqueta), izqda(izqda), drcha(drcha), padre(padre)
   {}
 
-//Destruye el nodo n y sus descendientes
+//Destruye el nodo n y sus descendientes FIXME
 template <class Tbase>
 void ArbolGeneral<Tbase>::destruir(nodo *n){
   if(n != NULL){
+    nodo * nodo_actual = n->izqda;
+    while(nodo_actual != NULL){
+      nodo * nodo_aux = nodo_actual
+      destruir(nodo_actual->drcha);
+    }
     destruir(n->izqda);
-    destruir(n->drcha);
     delete n;
   }
 }
@@ -17,13 +21,23 @@ void ArbolGeneral<Tbase>::destruir(nodo *n){
 //Copia subarbol FIXME
 //no es lo mas apropiado
 template <class Tbase>
-void ArbolGeneral<Tbase>::copiar(nodo *& dest, nodo * orig, nodo * padre, bool copiar_hermanos){
-  dest = new nodo(orig->etiqueta, NULL, NULL, padre);
+void ArbolGeneral<Tbase>::copiar(nodo *& dest, nodo * orig){
+  dest = new nodo(orig->etiqueta, NULL, NULL, NULL);
 
-  if(orig->izqda != NULL)
-    this->copiar(dest->izqda, orig->izqda, dest, true);
-  if(copiar_hermanos && orig->drcha != NULL)
-    this->copiar(dest->drcha, orig->drcha, padre, true);
+  if(orig->izqda != NULL){
+    nodo * nodo_actual = orig->izqda;
+    while(nodo_actual != NULL){
+      this->copiar(, nodo_actual);
+      nodo_actual = nodo_actual->drcha;
+    }
+  }
+
+  nodo * nodo_actual = orig->izqda;
+  while(nodo_actual != NULL){
+    this->copiar(dest->izqda, nodo_actual);
+    dest->izqda->padre = dest;
+    nodo_actual = nodo_actual->drcha;
+  }
 }
 
 
