@@ -1,11 +1,15 @@
 #include "ArbolGeneral.h"
 #include <vector>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
 class Diccionario{
 private:
+
+  //FIXME DOCUMENTAR!!!
+
   struct info{
     char c;
     bool final
@@ -13,6 +17,10 @@ private:
     info() :c('\0'), final(false){}
     info(char caracter, bool )
   };
+
+  ArbolGeneral<info> datos;
+
+  void insertarPalabra(string palabra);
 public:
 	/**
 		@brief Construye un diccionario vacío
