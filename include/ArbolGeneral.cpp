@@ -325,3 +325,81 @@ ArbolGeneral<Tbase>::iter_preorden ArbolGeneral<Tbase>::end(){
   iterador.level = 0;
   return iterador;
 }
+//----ITERADOR CONSTANTE----------------------------------------------
+
+//Constructor del iterador
+template <class Tbase>
+ArbolGeneral<Tbase>::const_iter_preorden::const_iter_preorden(){
+  this->it = NULL;
+  this->raiz = NULL;
+  this->level = 0;
+}
+
+//Devuelve la etiqueta del nodo
+template <class Tbase>
+const Tbase& ArbolGeneral<Tbase>::const_iter_preorden::operator*(){
+  return *(it->etiqueta);
+}
+
+//Devuelve el nivel del nodo
+template <class Tbase>
+int ArbolGeneral<Tbase>::const_iter_preorden::getlevel() const{
+  return this->level;
+}
+
+//Siguiente nodo
+template <class Tbase>
+ArbolGeneral<Tbase>::const_iter_preorden& ArbolGeneral<Tbase>::const_iter_preorden::operator ++(){
+  if(it != NULL){
+    if(it->izqda != NULL){
+      it = it->izqda;
+      level++;
+    }
+    else if(it->drcha != NULL)
+      it = it->drcha;
+    else{
+      while(it->padre != NULL && it->padre->drcha == NULL){
+        it = it->padre;
+        level--;
+      }
+      if(it->padre == NULL){
+        iterador.it = NULL;
+        iterador.raiz = this->laraiz;
+      }else {
+        it = it->padre->drcha;
+      }
+    }
+  }
+}
+
+//Compara la igualdad de 2 iteradores
+template <class Tbase>
+bool ArbolGeneral<Tbase>::const_iter_preorden::operator==(const iter_preorden &i){
+  return (this->it == i.it && this->raiz == i.raiz);
+}
+
+//Compara la desigualdad de 2 iteradores
+template <class Tbase>
+bool ArbolGeneral<Tbase>::const_iter_preorden::operator!=(const iter_preorden &i){
+  return (this->it != i.it || this->raiz != i.raiz);
+}
+
+//Iterator begin
+template <class Tbase>
+ArbolGeneral<Tbase>::const_iter_preorden ArbolGeneral<Tbase>::begin() const{
+  ArbolGeneral<Tbase>::iter_preorden iterador;
+  iterador.it = this->laraiz;
+  iterador.raiz = this->laraiz;
+  iterador.level = 0;
+  return iterador;
+}
+
+//Iterator end
+template <class Tbase>
+ArbolGeneral<Tbase>::iter_preorden ArbolGeneral<Tbase>::end() const{
+  ArbolGeneral<Tbase>::iter_preorden iterador;
+  iterador.it = NULL;
+  iterador.raiz = this->laraiz;
+  iterador.level = 0;
+  return iterador;
+}
