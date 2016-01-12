@@ -272,19 +272,24 @@ int ArbolGeneral<Tbase>::iter_preorden::getlevel() const{
 //Siguiente nodo
 template <class Tbase>
 ArbolGeneral<Tbase>::iter_preorden& ArbolGeneral<Tbase>::iter_preorden::operator ++(){
-  if(it->izqda != NULL)
-    it = it->izqda;
-  else if(it->drcha != NULL)
-    it = it->drcha;
-  else{
-    while(it->padre != NULL && it->padre->drcha == NULL){
-      it = it->padre;
+  if(it != NULL){
+    if(it->izqda != NULL){
+      it = it->izqda;
+      level++;
     }
-    if(it->padre == NULL){
-      iterador.it = NULL;
-      iterador.raiz = this->laraiz;
-    }else {
-      it = it->padre->drcha;
+    else if(it->drcha != NULL)
+      it = it->drcha;
+    else{
+      while(it->padre != NULL && it->padre->drcha == NULL){
+        it = it->padre;
+        level--;
+      }
+      if(it->padre == NULL){
+        iterador.it = NULL;
+        iterador.raiz = this->laraiz;
+      }else {
+        it = it->padre->drcha;
+      }
     }
   }
 }
