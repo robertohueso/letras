@@ -553,11 +553,11 @@ class ArbolGeneral{
 	 friend class ArbolGeneral;
     };
     class const_iter_preorden{
-       private:
-	  const nodo * it;
-	  const nodo * raiz;
-	 int level;
-       public:
+    private:
+  	  const nodo * it;
+  	  const nodo * raiz;
+      int level;
+    public:
 	 /**
 	  * @brief Constructor por defecto
 	  *
@@ -584,7 +584,7 @@ class ArbolGeneral{
 	  * @brief Obtiene un iterador al siguiente nodo segun el recorrido en preorden
 	  *
 	  * */
-	 const_iter_preorden & operator ++();
+	 const_iter_preorden & operator++();
 
 	 /**
 	  * @brief Compara dos iteradores
@@ -611,14 +611,14 @@ class ArbolGeneral{
      */
 
      iter_preorden begin();
-     const_iter_preorden begin()const
+     const_iter_preorden cbegin() const;
 
 
     /**
      * @brief Inicializa un iterador al nodo nulo con la raiz del arbol. Nivel -1
      */
      iter_preorden end();
-     const_iter_preorden end()const
+     const_iter_preorden cend() const;
 
 };
 

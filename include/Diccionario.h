@@ -5,26 +5,39 @@
 
 using namespace std;
 
+
+  //FIXME solo para testdiccionario lo he puesto public!
+  struct info{
+    char c;
+    bool final;
+
+    info() :c('\0'), final(false){}
+    info(char caracter, bool caracter_final): c(caracter), final(caracter_final){}
+  };
+
+
 class Diccionario{
 private:
 
   //FIXME DOCUMENTAR!!!
 
-  struct info{
+  //FIXME solo para testdiccionario lo he puesto public!
+  /*struct info{
     char c;
-    bool final
+    bool final;
 
     info() :c('\0'), final(false){}
-    info(char caracter, bool )
-  };
+    info(char caracter, bool caracter_final);
+  };*/
 
   ArbolGeneral<info> datos;
 
   void insertarPalabra(string palabra);
 
   bool encontrar(ArbolGeneral<info>::Nodo, string palabra);
-  
+
 public:
+
 	/**
 		@brief Construye un diccionario vacío
 	**/

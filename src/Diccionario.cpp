@@ -1,5 +1,10 @@
 #include "Diccionario.h"
 
+Diccionario::Diccionario(){
+  info raiz;
+  datos.AsignaRaiz(raiz);
+}
+
 //Inserta la palabra en el Arbol
 void Diccionario::insertarPalabra(string palabra){
   char letra;
@@ -8,7 +13,7 @@ void Diccionario::insertarPalabra(string palabra){
 
   for(size_t i = 0; i < palabra.length(); i++){
     info nuevos_datos;
-    nuevos_datos.c = (*letra);
+    nuevos_datos.c = letra;
     if(i == (palabra.length() - 1))
       nuevos_datos.final = true;
     else
@@ -21,7 +26,7 @@ void Diccionario::insertarPalabra(string palabra){
       bool encontrado = false;
       bool derecha_nulo = false;
       while(!encontrado && !derecha_nulo){
-        if(nodo_actual->etiqueta == nuevos_datos)
+        if(datos.etiqueta(nodo_actual).c == nuevos_datos.c)
           encontrado = true;
         if(nodo_actual->drcha == NULL)
           derecha_nulo = true;
@@ -68,16 +73,18 @@ bool Diccionario::encontrar(ArbolGeneral<info>::Nodo nodo, string palabra){
 //Numero de palabras en el diccionario.
 int Diccionario::size() const{
   int numero_palabras = 0;
-  ArbolGeneral::iter_preorden it;
-  for(it = datos.begin(); it != datos.end(); it++){
+  ArbolGeneral<info>::const_iter_preorden it;
+  for(it = datos.cbegin(); it != datos.cend(); ++it){
     if((*it).final)
       numero_palabras++;
   }
-  return i;
+  return numero_palabras;
 }
 
 //Devuelve palabras con una longitud dada.
 vector<string> Diccionario::PalabrasLongitud(int longitud){
+  vector<string> palabras;
+  return palabras;
   //IMPLEMENTAR FIXME
 }
 
@@ -87,15 +94,17 @@ bool Diccionario::Esta(string palabra){
 }
 
 //Lee de un flujo de entrada un diccionario.
-friend istream & operator >>(istream& is, Diccionario &D){
+istream & operator >>(istream& is, Diccionario &D){
   string palabra;
   while(!(is.eof())){
     getline(is, palabra, '\n');
     D.insertarPalabra(palabra);
   }
+  return is;
 }
 
 //Escribe salida del diccionario.
-friend ostream& operator<<(ostream& os, const Diccionario& D){
+ostream& operator<<(ostream& os, const Diccionario& D){
+  return os;
   //IMPLEMENTAR FIXME
 }

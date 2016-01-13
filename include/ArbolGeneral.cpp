@@ -57,7 +57,7 @@ bool ArbolGeneral<Tbase>::soniguales(const nodo *n1, const nodo *n2) const{
 template <class Tbase>
 void ArbolGeneral<Tbase>::escribe_arbol(std::ostream& out, nodo *nod) const{
   if(nod == NULL)
-    out << "x"
+    out << "x";
   else{
     out << "n " << nod->etiqueta;
     escribe_arbol(out, nod->izqda);
@@ -73,14 +73,13 @@ void ArbolGeneral<Tbase>::lee_arbol(std::istream& in, nodo *& nod){
 
 //Constructor por defecto
 template <class Tbase>
-ArbolGeneral<Tbase>::ArbolGeneral(): laraiz(NULL)
+ArbolGeneral<Tbase>::ArbolGeneral() :laraiz(NULL)
   {}
 
 //Constructor raiz
 template <class Tbase>
 ArbolGeneral<Tbase>::ArbolGeneral(const Tbase& e){
-  this->laraiz = new nodo;
-  this->laraiz->etiqueta = e;
+  this->laraiz = new nodo(e, NULL, NULL, NULL);
 }
 
 //Constructor copia
@@ -100,7 +99,7 @@ template <class Tbase>
 ArbolGeneral<Tbase>& ArbolGeneral<Tbase>::operator=(const ArbolGeneral<Tbase> &v){
   this->destruir(this->laraiz);
   this->copiar(this->laraiz, v.laraiz, NULL);
-  return this;
+  return *this;
 }
 
 //Asigna raiz
@@ -112,38 +111,38 @@ void ArbolGeneral<Tbase>::AsignaRaiz(const Tbase& e){
 
 //Devuelve la raiz
 template <class Tbase>
-ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::raiz() const{
+typename ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::raiz() const{
   return this->laraiz;
 }
 
 //Devuelve hijo mas izquierda
 template <class Tbase>
-ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::hijomasizquierda(const Nodo n) const{
+typename ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::hijomasizquierda(const Nodo n) const{
   return n->izqda;
 }
 
 //Devuelve hermano a la derecha
 template <class Tbase>
-ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::hermanoderecha(const Nodo n) const{
+typename ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::hermanoderecha(const Nodo n) const{
   return n->drcha;
 }
 
 //Devuelve padre
 template <class Tbase>
-ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::padre(const Nodo n) const{
+typename ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::padre(const Nodo n) const{
   return n->padre;
 }
 
 //Devuelve referencia a etiqueta
 template <class Tbase>
 Tbase& ArbolGeneral<Tbase>::etiqueta(const Nodo n){
-  return *(n->etiqueta);
+  return n->etiqueta;
 }
 
 //Devuelve referencia a etiqueta
 template <class Tbase>
 const Tbase& ArbolGeneral<Tbase>::etiqueta(const Nodo n) const{
-  return *(n->etiqueta);
+  return n->etiqueta;
 }
 
 //Copia arbol en subarbol
@@ -237,6 +236,7 @@ bool ArbolGeneral<Tbase>::operator!=(const ArbolGeneral<Tbase>& v) const{
 //Operator >> para insertar el arbol en v
 template <class T>
 std::istream& operator>>(std::istream& in, ArbolGeneral<T>& v){
+  return in;
   //IMPLEMENTAR AUN-----------------------
 }
 
@@ -271,7 +271,7 @@ int ArbolGeneral<Tbase>::iter_preorden::getlevel() const{
 
 //Siguiente nodo
 template <class Tbase>
-ArbolGeneral<Tbase>::iter_preorden& ArbolGeneral<Tbase>::iter_preorden::operator ++(){
+typename ArbolGeneral<Tbase>::iter_preorden& ArbolGeneral<Tbase>::iter_preorden::operator ++(){
   if(it != NULL){
     if(it->izqda != NULL){
       it = it->izqda;
@@ -285,8 +285,7 @@ ArbolGeneral<Tbase>::iter_preorden& ArbolGeneral<Tbase>::iter_preorden::operator
         level--;
       }
       if(it->padre == NULL){
-        iterador.it = NULL;
-        iterador.raiz = this->laraiz;
+        this->it = NULL;
       }else {
         it = it->padre->drcha;
       }
@@ -308,7 +307,7 @@ bool ArbolGeneral<Tbase>::iter_preorden::operator!=(const iter_preorden &i){
 
 //Iterator begin
 template <class Tbase>
-ArbolGeneral<Tbase>::iter_preorden ArbolGeneral<Tbase>::begin(){
+typename ArbolGeneral<Tbase>::iter_preorden ArbolGeneral<Tbase>::begin(){
   ArbolGeneral<Tbase>::iter_preorden iterador;
   iterador.it = this->laraiz;
   iterador.raiz = this->laraiz;
@@ -318,7 +317,7 @@ ArbolGeneral<Tbase>::iter_preorden ArbolGeneral<Tbase>::begin(){
 
 //Iterator end
 template <class Tbase>
-ArbolGeneral<Tbase>::iter_preorden ArbolGeneral<Tbase>::end(){
+typename ArbolGeneral<Tbase>::iter_preorden ArbolGeneral<Tbase>::end(){
   ArbolGeneral<Tbase>::iter_preorden iterador;
   iterador.it = NULL;
   iterador.raiz = this->laraiz;
@@ -338,7 +337,7 @@ ArbolGeneral<Tbase>::const_iter_preorden::const_iter_preorden(){
 //Devuelve la etiqueta del nodo
 template <class Tbase>
 const Tbase& ArbolGeneral<Tbase>::const_iter_preorden::operator*(){
-  return *(it->etiqueta);
+  return it->etiqueta;
 }
 
 //Devuelve el nivel del nodo
@@ -349,7 +348,7 @@ int ArbolGeneral<Tbase>::const_iter_preorden::getlevel() const{
 
 //Siguiente nodo
 template <class Tbase>
-ArbolGeneral<Tbase>::const_iter_preorden& ArbolGeneral<Tbase>::const_iter_preorden::operator ++(){
+typename ArbolGeneral<Tbase>::const_iter_preorden& ArbolGeneral<Tbase>::const_iter_preorden::operator++(){
   if(it != NULL){
     if(it->izqda != NULL){
       it = it->izqda;
@@ -363,31 +362,31 @@ ArbolGeneral<Tbase>::const_iter_preorden& ArbolGeneral<Tbase>::const_iter_preord
         level--;
       }
       if(it->padre == NULL){
-        iterador.it = NULL;
-        iterador.raiz = this->laraiz;
+        this->it = NULL;
       }else {
         it = it->padre->drcha;
       }
     }
   }
+  return *this;
 }
 
 //Compara la igualdad de 2 iteradores
 template <class Tbase>
-bool ArbolGeneral<Tbase>::const_iter_preorden::operator==(const iter_preorden &i){
+bool ArbolGeneral<Tbase>::const_iter_preorden::operator==(const const_iter_preorden &i){
   return (this->it == i.it && this->raiz == i.raiz);
 }
 
 //Compara la desigualdad de 2 iteradores
 template <class Tbase>
-bool ArbolGeneral<Tbase>::const_iter_preorden::operator!=(const iter_preorden &i){
+bool ArbolGeneral<Tbase>::const_iter_preorden::operator!=(const const_iter_preorden &i){
   return (this->it != i.it || this->raiz != i.raiz);
 }
 
 //Iterator begin
 template <class Tbase>
-ArbolGeneral<Tbase>::const_iter_preorden ArbolGeneral<Tbase>::begin() const{
-  ArbolGeneral<Tbase>::iter_preorden iterador;
+typename ArbolGeneral<Tbase>::const_iter_preorden ArbolGeneral<Tbase>::cbegin() const{
+  ArbolGeneral<Tbase>::const_iter_preorden iterador;
   iterador.it = this->laraiz;
   iterador.raiz = this->laraiz;
   iterador.level = 0;
@@ -396,8 +395,8 @@ ArbolGeneral<Tbase>::const_iter_preorden ArbolGeneral<Tbase>::begin() const{
 
 //Iterator end
 template <class Tbase>
-ArbolGeneral<Tbase>::iter_preorden ArbolGeneral<Tbase>::end() const{
-  ArbolGeneral<Tbase>::iter_preorden iterador;
+typename ArbolGeneral<Tbase>::const_iter_preorden ArbolGeneral<Tbase>::cend() const{
+  ArbolGeneral<Tbase>::const_iter_preorden iterador;
   iterador.it = NULL;
   iterador.raiz = this->laraiz;
   iterador.level = 0;
