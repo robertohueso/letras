@@ -1,5 +1,6 @@
 #include "Diccionario.h"
 
+//Inserta la palabra en el Arbol
 void Diccionario::insertarPalabra(string palabra){
   char letra;
   ArbolGeneral<info>::Nodo nodo_actual = datos.raiz();
@@ -24,6 +25,8 @@ void Diccionario::insertarPalabra(string palabra){
           encontrado = true;
         if(nodo_actual->drcha == NULL)
           derecha_nulo = true;
+        if(!encontrado)
+          nodo_actual = datos.hermanoderecha(nodo_actual);
       }
 
       if(derecha_nulo){
@@ -37,13 +40,38 @@ void Diccionario::insertarPalabra(string palabra){
   }
 }
 
+//Devuelve true si la palabra se encuentra en el arbol que cuelga del Nodo nodo
+bool Diccionario::encontrar(ArbolGeneral<info>::Nodo nodo, string palabra){
+  ArbolGeneral<info>::Nodo nodo_actual = datos.hijomasizquierda(nodo);
+
+  bool encontrado = false;
+  bool derecha_nulo = false;
+  while(!encontrado && !derecha_nulo){
+    if((datos.etiqueta(nodo_actual)).c == (*(palabra.begin())))
+      encontrado = true;
+    if(nodo_actual->drcha == NULL)
+      derecha_nulo = true;
+    if(!encontrado)
+      nodo_actual = datos.hermanoderecha(nodo_actual);
+  }
+
+  if(derecha_nulo)
+    return false;
+  else if(derecha_nulo && (datos.etiqueta(nodo_actual)).final)
+    return true;
+  else{
+    palabra.erase(palabra.begin());
+    return this->encontrar(nodo_actual, palabra);
+  }
+}
+
 //Numero de palabras en el diccionario.
 int Diccionario::size() const{
-  int i = 0;
+  int numero_palabras = 0;
   ArbolGeneral::iter_preorden it;
   for(it = datos.begin(); it != datos.end(); it++){
     if((*it).final)
-      i++;
+      numero_palabras++;
   }
   return i;
 }
@@ -55,7 +83,7 @@ vector<string> Diccionario::PalabrasLongitud(int longitud){
 
 //Indica si una palabra esta en el diccionario.
 bool Diccionario::Esta(string palabra){
-  //IMPLEMENTAR FIXME
+  return this->encontrar(datos.raiz(), palabra);
 }
 
 //Lee de un flujo de entrada un diccionario.

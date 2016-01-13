@@ -21,6 +21,9 @@ private:
   ArbolGeneral<info> datos;
 
   void insertarPalabra(string palabra);
+
+  bool encontrar(ArbolGeneral<info>::Nodo, string palabra);
+  
 public:
 	/**
 		@brief Construye un diccionario vacío
