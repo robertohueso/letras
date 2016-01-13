@@ -1,5 +1,6 @@
 #include "Diccionario.h"
 
+//Constructor por defecto de diccionario.
 Diccionario::Diccionario(){
   info raiz;
   datos.AsignaRaiz(raiz);
@@ -21,7 +22,7 @@ void Diccionario::insertarPalabra(string palabra){
 
     letra = palabra[i];
     nodo_padre = nodo_actual;
-    nodo_actual = nodo_actual->izqda;
+    nodo_actual = datos.hijomasizquierda(nodo_actual);
     if(nodo_actual != NULL){
       bool encontrado = false;
       bool derecha_nulo = false;
@@ -30,7 +31,7 @@ void Diccionario::insertarPalabra(string palabra){
           encontrado = true;
         if(nodo_actual->drcha == NULL)
           derecha_nulo = true;
-        if(!encontrado)
+        if(!encontrado && !derecha_nulo)
           nodo_actual = datos.hermanoderecha(nodo_actual);
       }
 
@@ -41,6 +42,7 @@ void Diccionario::insertarPalabra(string palabra){
     }else{
       ArbolGeneral<info> arbol_aux(nuevos_datos);
       datos.insertar_hijomasizquierda(nodo_padre, arbol_aux);
+      nodo_actual = datos.hijomasizquierda(nodo_padre);
     }
   }
 }

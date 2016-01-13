@@ -173,33 +173,6 @@ class ArbolGeneral{
       */
     bool soniguales(const nodo * n1, const nodo * n2) const;
 
-    /**
-      * @brief Escribe un subárbol
-      * @param out Stream de salida donde escribir
-      * @param nod Nodo del que cuelga el subárbol a escribir
-      *
-      * Escribe en el flujo de salida todos los nodos del subárbol que cuelga
-      * del nodo \e nod siguiendo un recorrido en preorden. La forma de
-      * impresión de cada nodo es:
-      *
-      * - Si el nodo es nulo, imprime el carácter 'x'.
-      * - Si el nodo no es nulo, imprime el carácter 'n' seguido de un
-      * espacio, al que sigue la impresión de la etiqueta
-      */
-    void escribe_arbol(std::ostream& out, nodo * nod) const;
-
-    /**
-      * @brief Lee un subárbol
-      * @param in Stream de entrada desde el que leer
-      * @param nod Referencia al nodo que contendrá el subárbol leído
-      *
-      * Lee del flujo de entrada \e in los elementos de un árbol según el
-      * formato que se presenta en la función de escritura.
-      *
-      * @see escribe_arbol
-      */
-    void lee_arbol(std::istream& in, nodo *& nod);
-
   public:
     /**
       * @brief Tipo Nodo
@@ -463,38 +436,7 @@ class ArbolGeneral{
       */
     bool operator != (const ArbolGeneral<Tbase>& v) const;
 
-    /**
-      * @brief Operador de extracción de flujo
-      * @param in Stream de entrada
-      * @param v Árbol que leer
-      * @return Referencia al stream de entrada
-      *
-      * Lee de \e in un árbol y lo almacena en \e v. El formato aceptado para
-      * la lectura se puede consultar en la función de salida.
-      * @see lee_arbol
-      */
-    template<class T>
-    friend std::istream& operator>>(std::istream& in, ArbolGeneral<T>& v);
-    /**
-      * @brief Operador de inserción en flujo
-      * @param out Stream de salida
-      * @param v Árbol que escribir
-      * @return Referencia al stream de salida
-      *
-      * Escribe en la salida todos los nodos del árbol \e v siguiendo un
-      * recorrido en preorden. La forma de impresión de cada nodo es:
-      *
-      * - Si el nodo es nulo, imprime el carácter 'x'.
-      * - Si el nodo no es nulo, imprime el carácter 'n' seguido de un
-      * espacio, al que sigue la impresión de la etiqueta.
-      *
-      * @see escribe_arbol
-      */
-    template<class T>
-    friend std::ostream& operator<<(std::ostream& out, const ArbolGeneral<T>& v);
-
-
-
+    
     /**
      * @brief TDA. Iterador del ArbolGeneral  en preorden
      * */

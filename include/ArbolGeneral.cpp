@@ -53,24 +53,6 @@ bool ArbolGeneral<Tbase>::soniguales(const nodo *n1, const nodo *n2) const{
     return false;
 }
 
-//Escribe subarbol en la salida
-template <class Tbase>
-void ArbolGeneral<Tbase>::escribe_arbol(std::ostream& out, nodo *nod) const{
-  if(nod == NULL)
-    out << "x";
-  else{
-    out << "n " << nod->etiqueta;
-    escribe_arbol(out, nod->izqda);
-    escribe_arbol(out, nod->drcha);
-  }
-}
-
-//Lee un arbol
-template <class Tbase>
-void ArbolGeneral<Tbase>::lee_arbol(std::istream& in, nodo *& nod){
-  //IMPLEMENTAR AUN-----------------------
-}
-
 //Constructor por defecto
 template <class Tbase>
 ArbolGeneral<Tbase>::ArbolGeneral() :laraiz(NULL)
@@ -183,7 +165,7 @@ template <class Tbase>
 void ArbolGeneral<Tbase>::insertar_hijomasizquierda(Nodo n, ArbolGeneral<Tbase>& rama){
   if(!(rama.empty())){
     Nodo aux = n->izqda;
-    n->izqda = rama.laraiz;
+    n->izqda = rama.raiz();
     n->izqda->padre = n;
     n->izqda->drcha = aux;
     rama.laraiz = NULL;
@@ -195,7 +177,7 @@ template <class Tbase>
 void ArbolGeneral<Tbase>::insertar_hermanoderecha(Nodo n, ArbolGeneral<Tbase>& rama){
   if(!(rama.empty())){
     Nodo aux = n->drcha;
-    n->drcha = rama.laraiz;
+    n->drcha = rama.raiz();
     n->drcha->padre = n->padre;
     n->drcha->drcha = aux;
     rama.laraiz = NULL;
@@ -231,20 +213,6 @@ bool ArbolGeneral<Tbase>::operator==(const ArbolGeneral<Tbase>& v) const{
 template <class Tbase>
 bool ArbolGeneral<Tbase>::operator!=(const ArbolGeneral<Tbase>& v) const{
   return !(this->soniguales(this->laraiz, v.laraiz));
-}
-
-//Operator >> para insertar el arbol en v
-template <class T>
-std::istream& operator>>(std::istream& in, ArbolGeneral<T>& v){
-  return in;
-  //IMPLEMENTAR AUN-----------------------
-}
-
-//Operator << para imprimir el arbol v
-template <class T>
-std::ostream& operator<<(std::ostream& out, const ArbolGeneral<T>& v){
-  v.escribe_arbol(out, v.laraiz);
-  return out;
 }
 
 //----ITERADOR NO CONSTANTE----------------------------------------------
