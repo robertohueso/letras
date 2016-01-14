@@ -77,4 +77,31 @@ public:
 		@return el flujo de salida.
 	**/
 	friend ostream& operator<<(ostream& os, const Diccionario& D);
+
+  //FIXME DOCUMENTAR Iterator
+  class iterator{
+  private:
+
+    ArbolGeneral<info>::iterator it;
+
+    string cadena;
+
+  public:
+    iterator();
+
+    string operator*();
+
+    iterator& operator++();
+
+    bool operator==(const iterator &otro_it);
+
+    bool operator!=(const iterator &otro_it);
+
+    friend class Diccionario;
+  };
+
+  iterator begin();
+
+  iterator end();
+
 };
