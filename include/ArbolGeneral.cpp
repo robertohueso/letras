@@ -79,8 +79,10 @@ ArbolGeneral<Tbase>::~ArbolGeneral(){
 //Operador =
 template <class Tbase>
 ArbolGeneral<Tbase>& ArbolGeneral<Tbase>::operator=(const ArbolGeneral<Tbase> &v){
-  this->destruir(this->laraiz);
-  this->copiar(this->laraiz, v.laraiz, NULL);
+  if(this != &v){
+    this->destruir(this->laraiz);
+    this->copiar(this->laraiz, v.laraiz, NULL);
+  }
   return *this;
 }
 
