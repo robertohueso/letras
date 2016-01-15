@@ -8,19 +8,17 @@ Diccionario::Diccionario(){
 
 //Inserta la palabra en el Arbol
 void Diccionario::insertarPalabra(string palabra){
-  char letra;
   ArbolGeneral<info>::Nodo nodo_actual = datos.raiz();
   ArbolGeneral<info>::Nodo nodo_padre;
 
   for(size_t i = 0; i < palabra.length(); i++){
     info nuevos_datos;
-    nuevos_datos.c = letra;
+    nuevos_datos.c = palabra[i];
     if(i == (palabra.length() - 1))
       nuevos_datos.final = true;
     else
       nuevos_datos.final = false;
 
-    letra = palabra[i];
     nodo_padre = nodo_actual;
     nodo_actual = datos.hijomasizquierda(nodo_actual);
     if(nodo_actual != NULL){
@@ -131,6 +129,8 @@ istream & operator >>(istream& is, Diccionario &D){
 
 //Escribe salida del diccionario.
 ostream& operator<<(ostream& os, const Diccionario& D){
+  //for(ArbolGeneral<info>::iter_preorden it = D.datos.begin(); it != D.datos.end(); ++it)
+  //  os << (*it).c;
   return os;
   //IMPLEMENTAR FIXME
 }
