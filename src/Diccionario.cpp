@@ -86,8 +86,32 @@ int Diccionario::size() const{
 //Devuelve palabras con una longitud dada.
 vector<string> Diccionario::PalabrasLongitud(int longitud){
   vector<string> palabras;
+  string palabra;
+  ArbolGeneral<info>::iter_preorden it;
+
+  for(it=datos.begin();it!=datos.end() && it.getlevel()<=longitud ;++it){
+    if((*it).final==true && it.getlevel()==longitud) {
+      palabra.push_back((*it).c);
+      palabras.push_back(palabra);
+    }
+    else
+      palabra.push_back((*it).c);
+    if(it.getlevel()==longitud)
+      palabra.clear();
+  }
+
+  /*while(p->drcha !=NULL || final_arbol==false){
+      while(p.getlevel()<=longitud && (*it).getlevel()<=longitud){
+        if(p->etiqueta->final==true)
+          palabra_encontrada = true;
+        palabra.push_back(p->etiqueta->c);
+
+
+
+
+      }
+*/
   return palabras;
-  //IMPLEMENTAR FIXME
 }
 
 //Indica si una palabra esta en el diccionario.
