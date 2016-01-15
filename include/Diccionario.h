@@ -74,7 +74,7 @@ public:
 		@param D: el objeto diccionario que se escribe.
 		@return el flujo de salida.
 	**/
-	friend ostream& operator<<(ostream& os, const Diccionario& D);
+	friend ostream& operator<<(ostream& os, Diccionario& D);
 
   //FIXME DOCUMENTAR Iterator
   class iterator{
@@ -101,4 +101,5 @@ public:
 
   iterator end();
 
+  friend class iterator;
 };

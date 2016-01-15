@@ -127,10 +127,12 @@ istream & operator >>(istream& is, Diccionario &D){
   return is;
 }
 
-//Escribe salida del diccionario.
-ostream& operator<<(ostream& os, const Diccionario& D){
-  //for(ArbolGeneral<info>::iter_preorden it = D.datos.begin(); it != D.datos.end(); ++it)
-  //  os << (*it).c;
+//Escribe salida del diccionario. FIXME PONER CONST DICCIONARIO
+ostream& operator<<(ostream& os, Diccionario& D){
+  //Diccionario::iterator it = D.begin();
+
+  for(Diccionario::iterator it = D.begin(); it != D.end(); ++it)
+    os << '\n' << (*it);
   return os;
   //IMPLEMENTAR FIXME
 }
@@ -145,10 +147,40 @@ string Diccionario::iterator::operator*(){
 
 //Pasa a la siguiente palabra
 Diccionario::iterator& Diccionario::iterator::operator++(){
-  while((*it).final != true && it.getlevel() != 0){
-    ++it;
-  }
+  int nivel_antiguo, nivel_actual;
 
+  /*++it;
+  nivel_actual = it.getlevel();
+  if(nivel_actual > nivel_antiguo)
+    cadena.insert(cadena.begin(), (*it).c);
+  else if(it.getlevel() < nivel_antiguo)
+    cadena.erase(cadena.begin());
+  else
+    cadena[0] = (*it).c;*/
+
+  do{
+    nivel_antiguo = it.getlevel();
+    ++it;
+    nivel_actual = it.getlevel();
+    if(nivel_actual > nivel_antiguo)
+      cadena.insert(cadena.begin(), (*it).c);
+    else if(it.getlevel() < nivel_antiguo)
+      cadena.erase(cadena.begin());
+    else
+      cadena[0] = (*it).c;
+  }while((*it).final != true && nivel_actual != 0);
+
+  /*while((*it).final != true && it.getlevel() != 0){
+    nivel_antiguo = it.getlevel();
+    ++it;
+    nivel_actual = it.getlevel();
+    if(nivel_actual > nivel_antiguo)
+      cadena.insert(cadena.begin(), (*it).c);
+    else if(it.getlevel() < nivel_antiguo)
+      cadena.erase(cadena.begin());
+    else
+      cadena[0] = (*it).c;
+  }*/
   return *this;
 }
 
@@ -166,18 +198,15 @@ bool Diccionario::iterator::operator!=(const iterator &otro_it){
 Diccionario::iterator Diccionario::begin(){
   //FIXME tener en cuenta el caso en el que no hay ninguna palabra
   Diccionario::iterator iter_comienzo;
-  ArbolGeneral<info>::Nodo nodo_actual;
+  string letra;
+  iter_comienzo.it = datos.begin();
+  iter_comienzo.cadena.clear();
+  ++(iter_comienzo.it);
+  letra = (*(iter_comienzo.it)).c;
+  iter_comienzo.cadena.reserve(500);
+  iter_comienzo.cadena.insert(0,letra);
+  ++iter_comienzo;
 
-  iter_comienzo.it = this->datos.begin();
-
-  while((*iter_comienzo.it).final != true && iter_comienzo.it != datos.end()){
-    ++(iter_comienzo.it);
-  }
-
-  while(nodo_actual != NULL){
-    iter_comienzo.cadena.push_back(datos.etiqueta(nodo_actual).c);
-    nodo_actual = datos.padre(nodo_actual);
-  }
   return iter_comienzo;
 }
 
