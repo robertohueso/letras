@@ -230,7 +230,7 @@ ArbolGeneral<Tbase>::iter_preorden::iter_preorden(){
 //Devuelve la etiqueta del nodo
 template <class Tbase>
 Tbase& ArbolGeneral<Tbase>::iter_preorden::operator*(){
-  return *(it->etiqueta);
+  return it->etiqueta;
 }
 
 //Devuelve el nivel del nodo
@@ -261,6 +261,7 @@ typename ArbolGeneral<Tbase>::iter_preorden& ArbolGeneral<Tbase>::iter_preorden:
       }
     }
   }
+  return *this;
 }
 
 //Compara la igualdad de 2 iteradores

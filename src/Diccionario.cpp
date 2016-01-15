@@ -110,3 +110,45 @@ ostream& operator<<(ostream& os, const Diccionario& D){
   return os;
   //IMPLEMENTAR FIXME
 }
+
+//Constructor del iterador
+Diccionario::iterator::iterator(){}
+
+//Devuelve la palabra a la que apunta
+string Diccionario::iterator::operator*(){
+  return this->cadena;
+}
+
+//Pasa a la siguiente palabra
+Diccionario::iterator& Diccionario::iterator::operator++(){
+  while((*it).final != true){
+    ++it;
+  }
+  return *this;
+}
+
+//Comprueba si 2 iteradores son iguales
+bool Diccionario::iterator::operator==(const iterator &otro_it){
+  return (this->it == otro_it.it && this->cadena == otro_it.cadena);
+}
+
+//Comprueba si 2 iteradores son diferentes
+bool Diccionario::iterator::operator!=(const iterator &otro_it){
+  return (this->it != otro_it.it || this->cadena != otro_it.cadena);
+}
+
+//Begin del iterator
+Diccionario::iterator Diccionario::begin(){
+  Diccionario::iterator iter_comienzo;
+  iter_comienzo.it = this->datos.begin();
+  ++iter_comienzo;
+  return iter_comienzo;
+}
+
+//End del iterator
+Diccionario::iterator Diccionario::end(){
+  Diccionario::iterator iter_final;
+  iter_final.it = this->datos.end();
+  iter_final.cadena = "\0";
+  return iter_final;
+}

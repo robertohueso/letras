@@ -81,8 +81,7 @@ public:
   //FIXME DOCUMENTAR Iterator
   class iterator{
   private:
-
-    ArbolGeneral<info>::iterator it;
+    ArbolGeneral<info>::iter_preorden it;
 
     string cadena;
 
