@@ -36,6 +36,7 @@ void Diccionario::insertarPalabra(string palabra){
       if(derecha_nulo){
         ArbolGeneral<info> arbol_aux(nuevos_datos);
         datos.insertar_hermanoderecha(nodo_actual, arbol_aux);
+        nodo_actual = datos.hermanoderecha(nodo_actual);
       }
     }else{
       ArbolGeneral<info> arbol_aux(nuevos_datos);
@@ -149,38 +150,28 @@ string Diccionario::iterator::operator*(){
 Diccionario::iterator& Diccionario::iterator::operator++(){
   int nivel_antiguo, nivel_actual;
 
-  /*++it;
+  nivel_antiguo = it.getlevel();
+  ++it;
   nivel_actual = it.getlevel();
-  if(nivel_actual > nivel_antiguo)
-    cadena.insert(cadena.begin(), (*it).c);
-  else if(it.getlevel() < nivel_antiguo)
-    cadena.erase(cadena.begin());
-  else
-    cadena[0] = (*it).c;*/
 
-  do{
-    nivel_antiguo = it.getlevel();
-    ++it;
-    nivel_actual = it.getlevel();
-    if(nivel_actual > nivel_antiguo)
-      cadena.insert(cadena.begin(), (*it).c);
-    else if(it.getlevel() < nivel_antiguo)
-      cadena.erase(cadena.begin());
-    else
-      cadena[0] = (*it).c;
-  }while((*it).final != true && nivel_actual != 0);
-
-  /*while((*it).final != true && it.getlevel() != 0){
-    nivel_antiguo = it.getlevel();
-    ++it;
-    nivel_actual = it.getlevel();
-    if(nivel_actual > nivel_antiguo)
-      cadena.insert(cadena.begin(), (*it).c);
-    else if(it.getlevel() < nivel_antiguo)
-      cadena.erase(cadena.begin());
-    else
-      cadena[0] = (*it).c;
-  }*/
+  if(nivel_actual == 0){
+    cadena = "";
+  }else if(nivel_actual > nivel_antiguo){
+    cadena += (*it).c;
+    while(!(*it).final){
+      ++it;
+      cadena += (*it).c;
+    }
+  }else{
+    size_t diferencia = nivel_antiguo - nivel_actual;
+    for(int i = 0; i <= diferencia; i++)
+      cadena.erase(cadena.size()-1);
+    cadena += (*it).c;
+    while(!(*it).final){
+      ++it;
+      cadena += (*it).c;
+    }
+  }
   return *this;
 }
 
@@ -200,12 +191,12 @@ Diccionario::iterator Diccionario::begin(){
   Diccionario::iterator iter_comienzo;
   string letra;
   iter_comienzo.it = datos.begin();
-  iter_comienzo.cadena.clear();
-  ++(iter_comienzo.it);
-  letra = (*(iter_comienzo.it)).c;
-  iter_comienzo.cadena.reserve(500);
-  iter_comienzo.cadena.insert(0,letra);
-  ++iter_comienzo;
+  iter_comienzo.cadena = "";
+  //++(iter_comienzo.it);
+  //letra = (*(iter_comienzo.it)).c;
+  //iter_comienzo.cadena.reserve(500);
+  //iter_comienzo.cadena.insert(0,letra);
+  //++iter_comienzo;
 
   return iter_comienzo;
 }
