@@ -121,8 +121,16 @@ string Diccionario::iterator::operator*(){
 
 //Pasa a la siguiente palabra
 Diccionario::iterator& Diccionario::iterator::operator++(){
-  while((*it).final != true){
+  this->cadena.clear();
+
+  //FIXME BASURA, NECESITO UNA BUENA IMPLEMENTACION
+  while((*it).final != true && it != datos.end()){
     ++it;
+  }
+
+  if((*it).final == true){
+    ArbolGeneral<info>::Nodo n =
+    while()
   }
   return *this;
 }
@@ -149,6 +157,6 @@ Diccionario::iterator Diccionario::begin(){
 Diccionario::iterator Diccionario::end(){
   Diccionario::iterator iter_final;
   iter_final.it = this->datos.end();
-  iter_final.cadena = "\0";
+  iter_final.cadena.clear();
   return iter_final;
 }

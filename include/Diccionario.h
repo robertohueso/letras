@@ -5,16 +5,14 @@
 
 using namespace std;
 
+//FIXME DOCUMENTAR
+struct info{
+  char c;
+  bool final;
 
-  //FIXME solo para testdiccionario lo he puesto public!
-  struct info{
-    char c;
-    bool final;
-
-    info() :c('\0'), final(false){}
-    info(char caracter, bool caracter_final): c(caracter), final(caracter_final){}
-  };
-
+  info() :c('\0'), final(false){}
+  info(char caracter, bool caracter_final): c(caracter), final(caracter_final){}
+};
 
 class Diccionario{
 private:
