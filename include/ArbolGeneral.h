@@ -436,7 +436,7 @@ class ArbolGeneral{
       */
     bool operator != (const ArbolGeneral<Tbase>& v) const;
 
-    
+
     /**
      * @brief TDA. Iterador del ArbolGeneral  en preorden
      * */
@@ -466,6 +466,8 @@ class ArbolGeneral{
 	  *
 	  * */
 
+    //FIXME DOCUMENTAR
+    ArbolGeneral<Tbase>::Nodo nodo();
 
 	 int getlevel()const;
 

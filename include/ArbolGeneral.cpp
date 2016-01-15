@@ -239,6 +239,12 @@ int ArbolGeneral<Tbase>::iter_preorden::getlevel() const{
   return this->level;
 }
 
+//Devuelve el puntero al nodo actual
+template <class Tbase>
+typename ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::iter_preorden::nodo(){
+  return it;
+}
+
 //Siguiente nodo
 template <class Tbase>
 typename ArbolGeneral<Tbase>::iter_preorden& ArbolGeneral<Tbase>::iter_preorden::operator ++(){

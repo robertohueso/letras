@@ -121,17 +121,10 @@ string Diccionario::iterator::operator*(){
 
 //Pasa a la siguiente palabra
 Diccionario::iterator& Diccionario::iterator::operator++(){
-  this->cadena.clear();
-
-  //FIXME BASURA, NECESITO UNA BUENA IMPLEMENTACION
-  while((*it).final != true && it != datos.end()){
+  while((*it).final != true && it.getlevel() != 0){
     ++it;
   }
 
-  if((*it).final == true){
-    ArbolGeneral<info>::Nodo n =
-    while()
-  }
   return *this;
 }
 
@@ -147,9 +140,20 @@ bool Diccionario::iterator::operator!=(const iterator &otro_it){
 
 //Begin del iterator
 Diccionario::iterator Diccionario::begin(){
+  //FIXME tener en cuenta el caso en el que no hay ninguna palabra
   Diccionario::iterator iter_comienzo;
+  ArbolGeneral<info>::Nodo nodo_actual;
+
   iter_comienzo.it = this->datos.begin();
-  ++iter_comienzo;
+
+  while((*iter_comienzo.it).final != true && iter_comienzo.it != datos.end()){
+    ++(iter_comienzo.it);
+  }
+
+  while(nodo_actual != NULL){
+    iter_comienzo.cadena.push_back(datos.etiqueta(nodo_actual).c);
+    nodo_actual = datos.padre(nodo_actual);
+  }
   return iter_comienzo;
 }
 
