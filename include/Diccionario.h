@@ -79,12 +79,14 @@ public:
   //FIXME DOCUMENTAR Iterator
   class iterator{
   private:
-    ArbolGeneral<info>::iter_preorden it;
+    ArbolGeneral<info>::const_iter_preorden it;
 
     string cadena;
 
+    ArbolGeneral<info>::const_iter_preorden end;
+
   public:
-    iterator();
+    iterator(const ArbolGeneral<info> &arbol);
 
     string operator*();
 

@@ -247,29 +247,6 @@ typename ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::iter_preorden::nodo(){
 
 //Siguiente nodo
 template <class Tbase>
-/*typename ArbolGeneral<Tbase>::iter_preorden& ArbolGeneral<Tbase>::iter_preorden::operator ++(){
-  if(it != NULL){
-    if(it->izqda != NULL){
-      it = it->izqda;
-      level++;
-    }
-    else if(it->drcha != NULL)
-      it = it->drcha;
-    else{
-      while(it->padre != NULL && it->padre->drcha == NULL){
-        it = it->padre;
-        level--;
-      }
-      if(it->padre == NULL){
-        this->it = NULL;
-      }else {
-        it = it->padre->drcha;
-        level--;
-      }
-    }
-  }
-  return *this;
-}*/
 typename ArbolGeneral<Tbase>::iter_preorden& ArbolGeneral<Tbase>::iter_preorden::operator ++(){
   if (it != NULL){
        if (it->izqda != NULL){ // Si hay un hijo a la izquierda se mueve a él.
@@ -353,26 +330,30 @@ int ArbolGeneral<Tbase>::const_iter_preorden::getlevel() const{
 //Siguiente nodo
 template <class Tbase>
 typename ArbolGeneral<Tbase>::const_iter_preorden& ArbolGeneral<Tbase>::const_iter_preorden::operator++(){
-  if(it != NULL){
-    if(it->izqda != NULL){
-      it = it->izqda;
-      level++;
-    }
-    else if(it->drcha != NULL)
-      it = it->drcha;
-    else{
-      while(it->padre != NULL && it->padre->drcha == NULL){
-        it = it->padre;
-        level--;
-      }
-      if(it->padre == NULL){
-        this->it = NULL;
-      }else {
-        it = it->padre->drcha;
-      }
-    }
-  }
-  return *this;
+  if (it != NULL){
+       if (it->izqda != NULL){ // Si hay un hijo a la izquierda se mueve a él.
+           it = it->izqda;
+           level++;
+       }
+       else if (it->drcha != NULL){ // Else Si hay un hermano a la derecha se mueve a él.
+           it = it->drcha;
+       }
+       else{  // Else se mueve al hermano a la derecha del primer padre que lo tenga.
+           while(it != NULL && it->drcha == NULL){
+               it = it->padre;
+               level--;
+           }
+          if(it != NULL && it->drcha != NULL)
+            it = it->drcha;
+          else
+            it = NULL;
+       }
+   }
+   else{
+       it = raiz; // El recorrido es cíclico.
+       level = 0;
+   }
+   return *this;
 }
 
 //Compara la igualdad de 2 iteradores

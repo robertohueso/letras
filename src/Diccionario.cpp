@@ -130,16 +130,16 @@ istream & operator >>(istream& is, Diccionario &D){
 
 //Escribe salida del diccionario. FIXME PONER CONST DICCIONARIO
 ostream& operator<<(ostream& os, Diccionario& D){
-  //Diccionario::iterator it = D.begin();
-
-  for(Diccionario::iterator it = D.begin(); it != D.end(); ++it)
+  Diccionario::iterator it(D.datos);
+  for(it = D.begin(); it != D.end(); ++it)
     os << '\n' << (*it);
   return os;
-  //IMPLEMENTAR FIXME
 }
 
 //Constructor del iterador
-Diccionario::iterator::iterator(){}
+Diccionario::iterator::iterator(const ArbolGeneral<info> &arbol){
+  this->end = arbol.cend();
+}
 
 //Devuelve la palabra a la que apunta
 string Diccionario::iterator::operator*(){
@@ -154,23 +154,30 @@ Diccionario::iterator& Diccionario::iterator::operator++(){
   ++it;
   nivel_actual = it.getlevel();
 
-  if(nivel_actual == 0){
-    cadena = "";
-  }else if(nivel_actual > nivel_antiguo){
-    cadena += (*it).c;
-    while(!(*it).final){
-      ++it;
+  if(it != end){
+    if(nivel_actual == 0){
+      cadena = "";
+    }else if(nivel_actual > nivel_antiguo){
       cadena += (*it).c;
-    }
-  }else{
-    size_t diferencia = nivel_antiguo - nivel_actual;
-    for(int i = 0; i <= diferencia; i++)
-      cadena.erase(cadena.size()-1);
-    cadena += (*it).c;
-    while(!(*it).final){
-      ++it;
+      while(!(*it).final){
+        ++it;
+        cadena += (*it).c;
+      }
+    }else{
+      size_t diferencia = nivel_antiguo - nivel_actual;
+      for(size_t i = 0; i <= diferencia; i++)
+        if(cadena.size() != 0)
+          cadena.erase(cadena.size()-1);
       cadena += (*it).c;
+      while(!(*it).final){
+        ++it;
+        cadena += (*it).c;
+      }
     }
+  }
+  else{
+    it = end;
+    cadena.clear();
   }
   return *this;
 }
@@ -188,23 +195,17 @@ bool Diccionario::iterator::operator!=(const iterator &otro_it){
 //Begin del iterator
 Diccionario::iterator Diccionario::begin(){
   //FIXME tener en cuenta el caso en el que no hay ninguna palabra
-  Diccionario::iterator iter_comienzo;
+  Diccionario::iterator iter_comienzo(this->datos);
   string letra;
-  iter_comienzo.it = datos.begin();
+  iter_comienzo.it = datos.cbegin();
   iter_comienzo.cadena = "";
-  //++(iter_comienzo.it);
-  //letra = (*(iter_comienzo.it)).c;
-  //iter_comienzo.cadena.reserve(500);
-  //iter_comienzo.cadena.insert(0,letra);
-  //++iter_comienzo;
-
   return iter_comienzo;
 }
 
 //End del iterator
 Diccionario::iterator Diccionario::end(){
-  Diccionario::iterator iter_final;
-  iter_final.it = this->datos.end();
+  Diccionario::iterator iter_final(this->datos);
+  iter_final.it = this->datos.cend();
   iter_final.cadena.clear();
   return iter_final;
 }
