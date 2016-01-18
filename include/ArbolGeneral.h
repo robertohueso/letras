@@ -90,6 +90,10 @@ class ArbolGeneral{
        /**
          * @brief Constructor con parametros
          *
+         * @param etiqueta Dato que contiene el nodo
+         * @param izqda Puntero al nodo hijo a la izquierda
+         * @param drcha Puntero al nodo hermano a la derecha
+         * @param padre Puntero al nodo padre.
          * Se crea el objeto nodo con los parametros que se le dan.
          */
         nodo(const Tbase &etiqueta, nodo *izqda, nodo *drcha, nodo *padre);
@@ -117,42 +121,18 @@ class ArbolGeneral{
     void destruirConHermanos(nodo * n);
 
     /**
-    FIXME
       * @brief Copia un subárbol conocido su padre
       * @param dest Referencia al puntero del que cuelga la copia
       * @param orig Puntero a la raíz del subárbol a copiar
       * @param padre Puntero al padre del nuevo subarbol
-      * @param copiar_hermanos Decide si se deben copiar los nodos hermanos de orig
+      * @param copiar_hermanos True si se deben copiar los nodos hermanos de orig, false en caso contrario
       *
       * Hace una copia de todo el subárbol que cuelga de \e orig en el puntero
       * \e dest. Es importante ver que en \e dest->padre (si existe) no se
       * asigna ningún valor, pues no se conoce.
       */
 
-      void copiar(nodo *& dest, nodo * orig, nodo * padre = NULL, bool copiar_hermanos = false);
-
-      /**
-        * @brief Copia un subárbol
-        * @param dest Referencia al puntero del que cuelga la copia
-        * @param orig Puntero a la raíz del subárbol a copiar
-        *
-        * Hace una copia de todo el subárbol que cuelga de \e orig en el puntero
-        * \e dest. Es importante ver que en \e dest->padre (si existe) no se
-        * asigna ningún valor, pues no se conoce.
-        */
-
-    //FIXME void copiar(nodo *& dest, nodo * orig, nodo * padre);
-
-    /**
-      * @brief Copia un subárbol
-      * @param dest Referencia al puntero del que cuelga la copia
-      * @param orig Puntero a la raíz del subárbol a copiar
-      *
-      * Hace una copia de todo el subárbol que cuelga de \e orig en el puntero
-      * \e dest. Es importante ver que en \e dest->padre (si existe) no se
-      * asigna ningún valor, pues no se conoce.
-      */
-    //FIXME void copiar(nodo *& dest, nodo * orig);
+    void copiar(nodo *& dest, nodo * orig, nodo * padre = NULL, bool copiar_hermanos = false);
 
     /**
       * @brief Cuenta el número de nodos
@@ -465,9 +445,6 @@ class ArbolGeneral{
 	  * @brief Obtiene el nivel del nodo
 	  *
 	  * */
-
-    //FIXME DOCUMENTAR
-    ArbolGeneral<Tbase>::Nodo nodo();
 
 	 int getlevel()const;
 

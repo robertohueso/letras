@@ -98,18 +98,6 @@ vector<string> Diccionario::PalabrasLongitud(int longitud){
     if(it.getlevel()==longitud)
       palabra.clear();
   }
-
-  /*while(p->drcha !=NULL || final_arbol==false){
-      while(p.getlevel()<=longitud && (*it).getlevel()<=longitud){
-        if(p->etiqueta->final==true)
-          palabra_encontrada = true;
-        palabra.push_back(p->etiqueta->c);
-
-
-
-
-      }
-*/
   return palabras;
 }
 

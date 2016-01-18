@@ -5,34 +5,65 @@
 
 using namespace std;
 
-//FIXME DOCUMENTAR
+/**
+  *@brief info
+  *
+  * En cada  estructura \e info se almacena un caracter y un booleano
+  * donde el booleano indica si el caracter es el final de una palabra.
+  */
 struct info{
+  /**
+    *@brief Caracter
+    */
   char c;
+
+  /**
+    *@brief Final
+    *
+    * True si es el final de una palabra, false si no
+    */
   bool final;
 
+  /**
+    *@brief Constructor por defecto
+    *
+    * Crea una estructura con el caracter nulo y el bool false
+    */
   info() :c('\0'), final(false){}
+
+  /**
+    *@brief Construye una estructura con los datos dados
+    *
+    * @param caracter Letra con la que se inicializa
+    * @param caracter_final Bool con el que se inicializa
+    */
   info(char caracter, bool caracter_final): c(caracter), final(caracter_final){}
 };
 
+//FIXME Documentar el TDA!
+
 class Diccionario{
 private:
-
-  //FIXME DOCUMENTAR!!!
-
-  //FIXME solo para testdiccionario lo he puesto public!
-  /*struct info{
-    char c;
-    bool final;
-
-    info() :c('\0'), final(false){}
-    info(char caracter, bool caracter_final);
-  };*/
-
+  
+  /**
+		@brief Contiene el arbol en el que se almacena el diccionario
+	**/
   ArbolGeneral<info> datos;
 
+  /**
+		*@brief Inserta una palabra en el diccionario.
+    *
+    *@param palabra String que contiene la palabra a insertar
+	**/
   void insertarPalabra(string palabra);
 
-  bool encontrar(ArbolGeneral<info>::Nodo, string palabra);
+  /**
+		*@brief Busca una palabra en el diccionario y devuelve true si existe
+    *
+    *@param nodo Nodo del que cuelga el arbol con la palabra a buscar.
+    *@param palabra String que contiene la palabra a buscar.
+	**/
+  bool encontrar(ArbolGeneral<info>::Nodo nodo, string palabra);
 
 public:
 

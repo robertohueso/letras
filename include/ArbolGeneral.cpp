@@ -239,12 +239,6 @@ int ArbolGeneral<Tbase>::iter_preorden::getlevel() const{
   return this->level;
 }
 
-//Devuelve el puntero al nodo actual
-template <class Tbase>
-typename ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::iter_preorden::nodo(){
-  return it;
-}
-
 //Siguiente nodo
 template <class Tbase>
 typename ArbolGeneral<Tbase>::iter_preorden& ArbolGeneral<Tbase>::iter_preorden::operator ++(){
@@ -368,7 +362,7 @@ bool ArbolGeneral<Tbase>::const_iter_preorden::operator!=(const const_iter_preor
   return (this->it != i.it || this->raiz != i.raiz);
 }
 
-//Iterator begin
+//Iterator begin FIXME DOCUMENTAR
 template <class Tbase>
 typename ArbolGeneral<Tbase>::const_iter_preorden ArbolGeneral<Tbase>::cbegin() const{
   ArbolGeneral<Tbase>::const_iter_preorden iterador;
@@ -378,7 +372,7 @@ typename ArbolGeneral<Tbase>::const_iter_preorden ArbolGeneral<Tbase>::cbegin() 
   return iterador;
 }
 
-//Iterator end
+//Iterator end FIXME DOCUMENTAR
 template <class Tbase>
 typename ArbolGeneral<Tbase>::const_iter_preorden ArbolGeneral<Tbase>::cend() const{
   ArbolGeneral<Tbase>::const_iter_preorden iterador;
