@@ -19,6 +19,9 @@ private:
 
 public:
 
+  //FIXME Documentar
+  Letra();
+
   /**
 		*@brief Constructor de Letra
     *

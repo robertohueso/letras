@@ -3,8 +3,8 @@
 #include <fstream>
 
 Letra ConjuntoLetras::Encontrar(Letra L){
-	Letra p:
-	p = conjunto.find(L);
+	Letra *p;
+	*p = conjunto.find(L);
 	return *p;
 }
 

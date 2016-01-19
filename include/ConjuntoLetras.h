@@ -15,17 +15,27 @@ public:
   void Insertar(Letra L);
 
   void setPuntos(Letra L);
+
   class iterator{
   private:
   	set<Letra>::iterator it;
   public:
-  	itrator();
-  	operator++();
+  	iterator();
 
-
-
+  	iterator& operator++();
 
   };
+
+  class const_iterator{
+  private:
+  	set<Letra>::const_iterator it;
+  public:
+  	const_iterator();
+
+  	const_iterator& operator++();
+
+  };
+
   iterator begin();
 
   iterator end();
@@ -33,7 +43,4 @@ public:
   const_iterator cbegin();
 
   const_iterator cend();
-  
-
-
-}
+};
