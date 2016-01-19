@@ -57,14 +57,6 @@ private:
 	**/
   void insertarPalabra(string palabra);
 
-  /**
-		*@brief Busca una palabra en el diccionario y devuelve true si existe
-    *
-    *@param nodo Nodo del que cuelga el arbol con la palabra a buscar.
-    *@param palabra String que contiene la palabra a buscar.
-	**/
-  bool encontrar(ArbolGeneral<info>::Nodo nodo, string palabra);
-
 public:
 
 	/**
@@ -89,7 +81,7 @@ public:
 		@param palabra: la palabra que se quiere buscar.
 		@return el flujo de entrada
 	**/
-	bool Esta(string palabra);
+	bool Esta(const string &palabra) const;
 
 	/**
 		@brief lee de un flujo de entrada un diccionario.

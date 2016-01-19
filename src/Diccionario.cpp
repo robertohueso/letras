@@ -46,31 +46,6 @@ void Diccionario::insertarPalabra(string palabra){
   }
 }
 
-//Devuelve true si la palabra se encuentra en el arbol que cuelga del Nodo nodo
-bool Diccionario::encontrar(ArbolGeneral<info>::Nodo nodo, string palabra){
-  ArbolGeneral<info>::Nodo nodo_actual = datos.hijomasizquierda(nodo);
-
-  bool encontrado = false;
-  bool derecha_nulo = false;
-  while(!encontrado && !derecha_nulo){
-    if((datos.etiqueta(nodo_actual)).c == (*(palabra.begin())))
-      encontrado = true;
-    if(nodo_actual->drcha == NULL)
-      derecha_nulo = true;
-    if(!encontrado)
-      nodo_actual = datos.hermanoderecha(nodo_actual);
-  }
-
-  if(derecha_nulo)
-    return false;
-  else if(derecha_nulo && (datos.etiqueta(nodo_actual)).final)
-    return true;
-  else{
-    palabra.erase(palabra.begin());
-    return this->encontrar(nodo_actual, palabra);
-  }
-}
-
 //Numero de palabras en el diccionario.
 int Diccionario::size() const{
   int numero_palabras = 0;
@@ -94,8 +69,13 @@ vector<string> Diccionario::PalabrasLongitud(const unsigned int &longitud) const
 }
 
 //Indica si una palabra esta en el diccionario.
-bool Diccionario::Esta(string palabra){
-  return this->encontrar(datos.raiz(), palabra);
+bool Diccionario::Esta(const string &palabra) const{
+  Diccionario::const_iterator it(this->datos);
+
+  for(it = this->cbegin(); it != this->cend(); ++it)
+    if((*it) == palabra)
+      return true;
+  return false;
 }
 
 //Lee de un flujo de entrada un diccionario.
