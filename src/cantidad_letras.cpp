@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
 	fstream s(argv[2]);
 	fstream q(argv[3]);
 	char c;
-	ConjuntoLetras conjuntazo;
+/*	ConjuntoLetras conjuntazo;
 	string dato;
 	Letra *p;
 
@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
 		p=conjuntazo.Encontrar(c);
 		if(p!=NULL)
 			p->aumentaRepeticiones(*p);
-		else 
+		else
 			conjuntazo.insertar(letrita);
 	}
 	getline(s, dato, "\n");
@@ -43,6 +43,6 @@ int main(int argc, char const *argv[])
 	for(it1=conjunto.begin();it1!=it.end();++it1){
 		f << it->getCaracter << " " << it-> getRepeticiones << " " << it->getPuntuacion << endl;
 	}
-
+*/
 	return 0;
 }

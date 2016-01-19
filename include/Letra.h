@@ -19,8 +19,20 @@ private:
 
 public:
 
-  //FIXME Documentar
-  Letra();
+  /**
+		*@brief Constructor por defecto, crea una letra vacia.
+	**/
+  Letra()
+  :caracter('\0'), repeticiones(0), puntuacion(0){}
+
+  /**
+		*@brief Constructor, crea una letra con un caracter. Todo lo demás
+    * lo inicializa a 0.
+    *
+    *@param caracter Caracter que tendrá la letra.
+	**/
+  Letra(char caracter)
+  :caracter(caracter), repeticiones(0), puntuacion(0){}
 
   /**
 		*@brief Constructor de Letra
@@ -53,16 +65,29 @@ public:
     return this->puntuacion;
   }
 
-  //FIXME Documentar
-  inline Letra& aumentaRepeticiones(){
-    this->repeticiones++;
-    return *this;
+  /**
+		*@brief Cambia la cantidad de repeticiones de una letra.
+    *
+    *@param nuevas_repeticiones Nueva cantidad de repeticiones
+	**/
+  inline void setRepeticiones(unsigned int nuevas_repeticiones){
+    this->repeticiones = nuevas_repeticiones;
   }
 
-  //FIXME Documentar
-  inline void setPuntos(unsigned int puntos){
-    this->puntuacion = puntos;
+  /**
+		*@brief Cambia la cantidad de puntos de una letra.
+    *
+    *@param nuevos_puntos Nueva cantidad de puntos
+	**/
+  inline void setPuntos(unsigned int nuevos_puntos){
+    this->puntuacion = nuevos_puntos;
   }
+
+  /**
+		*@brief Aumenta las repeticiones en 1 unidad.
+	**/
+  Letra& operator++();
+
 
   /**
 		*@brief Compara 2 letras
