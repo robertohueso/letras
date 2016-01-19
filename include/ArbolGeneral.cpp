@@ -352,13 +352,13 @@ typename ArbolGeneral<Tbase>::const_iter_preorden& ArbolGeneral<Tbase>::const_it
 
 //Compara la igualdad de 2 iteradores
 template <class Tbase>
-bool ArbolGeneral<Tbase>::const_iter_preorden::operator==(const const_iter_preorden &i){
+bool ArbolGeneral<Tbase>::const_iter_preorden::operator==(const const_iter_preorden &i) const{
   return (this->it == i.it && this->raiz == i.raiz);
 }
 
 //Compara la desigualdad de 2 iteradores
 template <class Tbase>
-bool ArbolGeneral<Tbase>::const_iter_preorden::operator!=(const const_iter_preorden &i){
+bool ArbolGeneral<Tbase>::const_iter_preorden::operator!=(const const_iter_preorden &i) const{
   return (this->it != i.it || this->raiz != i.raiz);
 }
 

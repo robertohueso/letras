@@ -44,7 +44,7 @@ struct info{
 
 class Diccionario{
 private:
-  
+
   /**
 		@brief Contiene el arbol en el que se almacena el diccionario
 	**/
@@ -105,7 +105,7 @@ public:
 		@param D: el objeto diccionario que se escribe.
 		@return el flujo de salida.
 	**/
-	friend ostream& operator<<(ostream& os, Diccionario& D);
+	friend ostream& operator<<(ostream& os, const Diccionario& D);
 
   //FIXME DOCUMENTAR Iterator
   class iterator{
@@ -130,9 +130,34 @@ public:
     friend class Diccionario;
   };
 
+  //FIXME DOCUMENTAR Const Iterator
+  class const_iterator{
+  private:
+    ArbolGeneral<info>::const_iter_preorden it;
+
+    string cadena;
+
+    ArbolGeneral<info>::const_iter_preorden end;
+
+  public:
+    const_iterator(const ArbolGeneral<info> &arbol);
+
+    string operator*() const;
+
+    const_iterator& operator++();
+
+    bool operator==(const const_iterator &otro_it) const;
+
+    bool operator!=(const const_iterator &otro_it) const;
+
+    friend class Diccionario;
+  };
+
   iterator begin();
 
   iterator end();
 
-  friend class iterator;
+  const_iterator cbegin() const;
+
+  const_iterator cend() const;
 };

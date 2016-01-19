@@ -512,7 +512,7 @@ class ArbolGeneral{
 	  * @param i: iterador con el con que se comparación
 	  * @return true si los dos iteradores son iguales (la raiz y el nodo son iguales). False en caso contrario
 	  * */
-	 bool operator == (const const_iter_preorden &i);
+	 bool operator == (const const_iter_preorden &i) const;
 
 	 /**
 	  * @brief Compara dos iteradores
@@ -521,7 +521,7 @@ class ArbolGeneral{
 	  * */
 
 
-	 bool operator != (const const_iter_preorden &i);
+	 bool operator != (const const_iter_preorden &i) const;
 
 
 	 friend class ArbolGeneral;

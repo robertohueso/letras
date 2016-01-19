@@ -117,12 +117,14 @@ istream & operator >>(istream& is, Diccionario &D){
 }
 
 //Escribe salida del diccionario. FIXME PONER CONST DICCIONARIO
-ostream& operator<<(ostream& os, Diccionario& D){
-  Diccionario::iterator it(D.datos);
-  for(it = D.begin(); it != D.end(); ++it)
+ostream& operator<<(ostream& os, const Diccionario& D){
+  Diccionario::const_iterator it(D.datos);
+  for(it = D.cbegin(); it != D.cend(); ++it)
     os << '\n' << (*it);
   return os;
 }
+
+//----ITERADOR NO CONSTANTE----------------------------------------------
 
 //Constructor del iterador
 Diccionario::iterator::iterator(const ArbolGeneral<info> &arbol){
@@ -193,6 +195,82 @@ Diccionario::iterator Diccionario::begin(){
 //End del iterator
 Diccionario::iterator Diccionario::end(){
   Diccionario::iterator iter_final(this->datos);
+  iter_final.it = this->datos.cend();
+  iter_final.cadena.clear();
+  return iter_final;
+}
+
+//----ITERADOR CONSTANTE----------------------------------------------
+
+//Constructor del iterador
+Diccionario::const_iterator::const_iterator(const ArbolGeneral<info> &arbol){
+  this->end = arbol.cend();
+}
+
+//Devuelve la palabra a la que apunta
+string Diccionario::const_iterator::operator*() const{
+  return this->cadena;
+}
+
+//Pasa a la siguiente palabra
+Diccionario::const_iterator& Diccionario::const_iterator::operator++(){
+  int nivel_antiguo, nivel_actual;
+
+  nivel_antiguo = it.getlevel();
+  ++it;
+  nivel_actual = it.getlevel();
+
+  if(it != end){
+    if(nivel_actual == 0){
+      cadena = "";
+    }else if(nivel_actual > nivel_antiguo){
+      cadena += (*it).c;
+      while(!(*it).final){
+        ++it;
+        cadena += (*it).c;
+      }
+    }else{
+      size_t diferencia = nivel_antiguo - nivel_actual;
+      for(size_t i = 0; i <= diferencia; i++)
+        if(cadena.size() != 0)
+          cadena.erase(cadena.size()-1);
+      cadena += (*it).c;
+      while(!(*it).final){
+        ++it;
+        cadena += (*it).c;
+      }
+    }
+  }
+  else{
+    it = end;
+    cadena.clear();
+  }
+  return *this;
+}
+
+//Comprueba si 2 iteradores son iguales
+bool Diccionario::const_iterator::operator==(const const_iterator &otro_it) const{
+  return (this->it == otro_it.it && this->cadena == otro_it.cadena);
+}
+
+//Comprueba si 2 iteradores son diferentes
+bool Diccionario::const_iterator::operator!=(const const_iterator &otro_it) const{
+  return (this->it != otro_it.it || this->cadena != otro_it.cadena);
+}
+
+//Begin del iterator
+Diccionario::const_iterator Diccionario::cbegin() const{
+  //FIXME tener en cuenta el caso en el que no hay ninguna palabra
+  Diccionario::const_iterator iter_comienzo(this->datos);
+  string letra;
+  iter_comienzo.it = datos.cbegin();
+  iter_comienzo.cadena = "";
+  return iter_comienzo;
+}
+
+//End del iterator
+Diccionario::const_iterator Diccionario::cend() const{
+  Diccionario::const_iterator iter_final(this->datos);
   iter_final.it = this->datos.cend();
   iter_final.cadena.clear();
   return iter_final;
