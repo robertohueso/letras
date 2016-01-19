@@ -88,7 +88,7 @@ istream & operator >>(istream& is, Diccionario &D){
   return is;
 }
 
-//Escribe salida del diccionario. FIXME PONER CONST DICCIONARIO
+//Escribe salida del diccionario.
 ostream& operator<<(ostream& os, const Diccionario& D){
   Diccionario::const_iterator it(D.datos);
   for(it = D.cbegin(); it != D.cend(); ++it)
