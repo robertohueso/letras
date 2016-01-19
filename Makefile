@@ -5,13 +5,19 @@ BIN = bin
 CXX = g++
 CPPFLAGS = -Wall -g  -I$(INC) -c
 
-all: $(BIN)/testdiccionario
+all: $(BIN)/testdiccionario $(BIN)/cantidad_letras
 
 $(BIN)/testdiccionario: $(OBJ)/Diccionario.o $(SRC)/testdiccionario.cpp
 	$(CXX) -g -Wall -I$(INC) $(SRC)/testdiccionario.cpp $(OBJ)/Diccionario.o -o $(BIN)/testdiccionario
 
+$(BIN)/cantidad_letras: $(OBJ)/ConjuntoLetras.o $(SRC)/cantidad_letras.cpp
+	$(CXX) -g -Wall -I$(INC) $(SRC)/cantidad_letras.cpp $(OBJ)/ConjuntoLetras.o -o $(BIN)/cantidad_letras
+
 $(OBJ)/Diccionario.o: $(SRC)/Diccionario.cpp $(INC)/Diccionario.h $(INC)/ArbolGeneral.cpp $(INC)/ArbolGeneral.h
 		$(CXX) $(CPPFLAGS) $(SRC)/Diccionario.cpp -o $(OBJ)/Diccionario.o
+
+$(OBJ)/ConjuntoLetras.o: $(SRC)/ConjuntoLetras.cpp $(INC)/Letra.h $(INC)/ConjuntoLetras.h
+		$(CXX) $(CPPFLAGS) $(SRC)/ConjuntoLetras.cpp -o $(OBJ)/ConjuntoLetras.o
 # ************ Generación de documentación ******************
 documentacion:
 	doxygen doc/doxys/Doxyfile
