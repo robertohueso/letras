@@ -83,21 +83,13 @@ int Diccionario::size() const{
 }
 
 //Devuelve palabras con una longitud dada.
-vector<string> Diccionario::PalabrasLongitud(int longitud){
+vector<string> Diccionario::PalabrasLongitud(const unsigned int &longitud) const{
   vector<string> palabras;
-  string palabra;
-  ArbolGeneral<info>::iter_preorden it;
+  Diccionario::const_iterator it(this->datos);
 
-  for(it=datos.begin();it!=datos.end() && it.getlevel()<=longitud ;++it){
-    if((*it).final==true && it.getlevel()==longitud) {
-      palabra.push_back((*it).c);
-      palabras.push_back(palabra);
-    }
-    else
-      palabra.push_back((*it).c);
-    if(it.getlevel()==longitud)
-      palabra.clear();
-  }
+  for(it = this->cbegin(); it != this->cend(); ++it)
+    if((*it).size() == longitud)
+      palabras.push_back(*it);
   return palabras;
 }
 

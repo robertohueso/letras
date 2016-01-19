@@ -82,7 +82,7 @@ public:
 		@param longitud: la longitud de las palabras de salida
 		@return un vector con las palabras de longitud especifica en el parametro de entrada
 	**/
-	vector<string> PalabrasLongitud(int longitud);
+	vector<string> PalabrasLongitud(const unsigned int &longitud) const;
 
 	/**
 		@brief Indica si una palabra esta en el diccionario o no.
