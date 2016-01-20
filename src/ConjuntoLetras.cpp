@@ -15,6 +15,13 @@ void ConjuntoLetras::autoRepartirCantidades(){
 	}
 }
 
+void ConjuntoLetras::setPuntos(const char &letra, unsigned int puntos){
+	map<char, Letra>::iterator it;
+	it = conjunto.find(letra);
+	if(it != conjunto.end())
+		it->second.setPuntos(puntos);
+}
+
 void ConjuntoLetras::insertar(const Letra &nueva_letra){
 	pair<map<char, Letra>::iterator, bool> resultado;
 	pair<char, Letra> nueva_inserccion(nueva_letra.getCaracter(), nueva_letra);
@@ -33,27 +40,21 @@ Letra ConjuntoLetras::getLetra(const char &letra_a_buscar) const{
 	}
 }
 
-void ConjuntoLetras::setPuntos(char letra, int puntos){
-	map<char,Letra>::iterator it;
-	it = conjunto.find(letra);
-
-	(*it).second.setPuntos(puntos);
-}
-
-
 istream& ConjuntoLetras::leerPuntos(istream& is){
 	string basura;
 	string letra;
 	string repeticiones;
 	string puntos;
-		getline(is, basura, '\n');
+	unsigned int valor;
+
+	getline(is, basura, '\n');
 	while(!is.eof()){
 		getline(is, letra, '\t');
 		getline(is, repeticiones, '\t');
 		getline(is, puntos, '\n');
 
-		int valor = atoi(puntos.c_str());
-		setPuntos(letra[0],valor);
+		valor = atoi(puntos.c_str());
+		this->setPuntos((char)tolower(letra[0]),valor);
 	}
 	return is;
 }

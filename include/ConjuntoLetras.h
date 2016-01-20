@@ -13,14 +13,14 @@ private:
   map<char, Letra> conjunto;
 
   void autoRepartirCantidades();
+
+  void setPuntos(const char &letra, unsigned int puntos);
 public:
   ConjuntoLetras();
 
   void insertar(const Letra &nueva_letra);
 
   Letra getLetra(const char &letra_a_buscar) const;
-
-  void setPuntos(char letra, int puntos);
 
   istream& leerPuntos(istream& is);
 
