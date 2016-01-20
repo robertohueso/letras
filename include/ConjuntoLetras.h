@@ -1,22 +1,26 @@
-#include <set>
+#include <map>
+#include <iostream>
+#include <fstream>
 #include "Letra.h"
 
 using namespace std;
 
 class ConjuntoLetras{
 private:
-  set<Letra> conjunto;
+  map<char, Letra> conjunto;
 
 public:
   ConjuntoLetras();
 
-  Letra Encontrar(Letra L);
+  void insertar(const Letra &nueva_letra);
 
-  void Insertar(Letra L);
+  Letra getLetra(const char &letra_a_buscar) const;
 
-  void setPuntos(Letra L);
+  friend istream & operator>>(istream& is, ConjuntoLetras &conj);
 
-  class iterator{
+  //void setPuntos(Letra L);
+
+  /*class iterator{
   private:
   	set<Letra>::iterator it;
   public:
@@ -42,5 +46,5 @@ public:
 
   const_iterator cbegin();
 
-  const_iterator cend();
+  const_iterator cend();*/
 };
