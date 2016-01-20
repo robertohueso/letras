@@ -1,6 +1,6 @@
 #include "Letra.h"
 
 Letra& Letra::operator++(){
-  this->repeticiones++;
+  repeticiones++;
   return *this;
 }

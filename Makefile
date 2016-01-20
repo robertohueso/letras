@@ -11,7 +11,7 @@ $(BIN)/testdiccionario: $(OBJ)/Diccionario.o $(SRC)/testdiccionario.cpp
 	$(CXX) -g -Wall -I$(INC) $(SRC)/testdiccionario.cpp $(OBJ)/Diccionario.o -o $(BIN)/testdiccionario
 
 $(BIN)/cantidad_letras: $(OBJ)/ConjuntoLetras.o $(SRC)/cantidad_letras.cpp
-	$(CXX) -g -Wall -I$(INC) $(SRC)/cantidad_letras.cpp $(OBJ)/ConjuntoLetras.o -o $(BIN)/cantidad_letras
+	$(CXX) -g -Wall -I$(INC) $(SRC)/cantidad_letras.cpp $(OBJ)/Letra.o $(OBJ)/ConjuntoLetras.o -o $(BIN)/cantidad_letras
 
 $(OBJ)/Diccionario.o: $(SRC)/Diccionario.cpp $(INC)/Diccionario.h $(INC)/ArbolGeneral.cpp $(INC)/ArbolGeneral.h
 		$(CXX) $(CPPFLAGS) $(SRC)/Diccionario.cpp -o $(OBJ)/Diccionario.o
@@ -20,7 +20,7 @@ $(OBJ)/Letra.o: $(SRC)/Letra.cpp $(INC)/Letra.h
 		$(CXX) $(CPPFLAGS) $(SRC)/Letra.cpp -o $(OBJ)/Letra.o
 
 $(OBJ)/ConjuntoLetras.o: $(SRC)/ConjuntoLetras.cpp $(OBJ)/Letra.o $(INC)/ConjuntoLetras.h
-		$(CXX) $(CPPFLAGS) $(SRC)/ConjuntoLetras.cpp $(OBJ)/Letra.o -o $(OBJ)/ConjuntoLetras.o
+		$(CXX) $(CPPFLAGS) $(SRC)/ConjuntoLetras.cpp  -o $(OBJ)/ConjuntoLetras.o
 # ************ Generación de documentación ******************
 documentacion:
 	doxygen doc/doxys/Doxyfile

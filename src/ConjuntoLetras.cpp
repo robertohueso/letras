@@ -1,11 +1,12 @@
 #include "ConjuntoLetras.h"
 
+ConjuntoLetras::ConjuntoLetras(){}
+
 void ConjuntoLetras::insertar(const Letra &nueva_letra){
 	pair<map<char, Letra>::iterator, bool> resultado;
 	pair<char, Letra> nueva_inserccion(nueva_letra.getCaracter(), nueva_letra);
 	resultado = conjunto.insert(nueva_inserccion);
- 	if(!resultado.second)
-		++(resultado.first->second);
+	++(resultado.first->second);
 }
 
 Letra ConjuntoLetras::getLetra(const char &letra_a_buscar) const{
@@ -23,8 +24,10 @@ istream & operator>>(istream& is, ConjuntoLetras &conj){
 	char c;
 	while(!is.eof()){
 		is >> c;
-		conj.insertar(Letra(c));
+		Letra nueva_letra(tolower(c));
+		conj.insertar(nueva_letra);
 	}
+	return is;
 }
 
 ostream & operator<<(ostream& os, const ConjuntoLetras &conj){
@@ -57,28 +60,33 @@ ConjuntoLetras::const_iterator ConjuntoLetras::cend(){
 }
 */
 
-ConjuntoLetras::const_iterator ConjuntoLetras::const_iterator::operator++(){
+ConjuntoLetras::const_iterator::const_iterator(){}
+
+ConjuntoLetras::const_iterator& ConjuntoLetras::const_iterator::operator++(){
 	++it;
 	return *this;
 }
 
 Letra ConjuntoLetras::const_iterator::operator*() const{
-	Letra letra(it->second.getCaracter(), it->second.getRepeticiones(), it->second.getPuntuacion());
-	return letra;
+	return (*it).second;
 }
 
 bool ConjuntoLetras::const_iterator::operator!=(const const_iterator &otro_it) const{
+	return (this->it != otro_it.it);
+}
+
+bool ConjuntoLetras::const_iterator::operator==(const const_iterator &otro_it) const{
 	return (this->it == otro_it.it);
 }
 
 ConjuntoLetras::const_iterator ConjuntoLetras::cbegin() const{
-	map<char, Letra>::const_iterator nuevo_iterador;
-	nuevo_iterador.it = conjunto.cbegin();
+	ConjuntoLetras::const_iterator nuevo_iterador;
+	nuevo_iterador.it = conjunto.begin();
 	return nuevo_iterador;
 }
 
 ConjuntoLetras::const_iterator ConjuntoLetras::cend() const{
-	map<char, Letra>::const_iterator nuevo_iterador;
-	nuevo_iterador.it = conjunto.cend();
+	ConjuntoLetras::const_iterator nuevo_iterador;
+	nuevo_iterador.it = conjunto.end();
 	return nuevo_iterador;
 }

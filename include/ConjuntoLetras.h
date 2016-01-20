@@ -44,6 +44,8 @@ public:
 
     bool operator!=(const const_iterator &otro_it) const;
 
+    bool operator==(const const_iterator &otro_it) const;
+
     friend class ConjuntoLetras;
   };
 

@@ -1,4 +1,6 @@
 //FIXME DOCUMENTAR Letra
+#ifndef __LETRA_H__
+#define __LETRA_H__
 
 class Letra{
 private:
@@ -98,3 +100,5 @@ public:
     return (caracter < otra_letra.caracter);
   }
 };
+
+#endif

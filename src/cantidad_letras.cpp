@@ -5,12 +5,15 @@
 
 using namespace std;
 
-int main(int argc, char const *argv[])
-{
-	fstream f(argv[1]);
-	fstream s(argv[2]);
-	fstream q(argv[3]);
-	char c;
+int main(int argc, char *argv[]){
+	ifstream lectura_diccionario(argv[1]);
+	ofstream salida_archivo(argv[2]);
+
+	ConjuntoLetras letras;
+	lectura_diccionario >> letras;
+	salida_archivo << letras;
+	//fstream q(argv[3]);
+	//char c;
 /*	ConjuntoLetras conjuntazo;
 	string dato;
 	Letra *p;
