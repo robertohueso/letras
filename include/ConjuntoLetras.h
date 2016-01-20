@@ -18,6 +18,8 @@ public:
 
   friend istream & operator>>(istream& is, ConjuntoLetras &conj);
 
+  friend ostream & operator<<(ostream& os, const ConjuntoLetras &conj);
+
   //void setPuntos(Letra L);
 
   /*class iterator{
@@ -28,23 +30,28 @@ public:
 
   	iterator& operator++();
 
-  };
+  };*/
 
   class const_iterator{
   private:
-  	set<Letra>::const_iterator it;
+  	map<char, Letra>::const_iterator it;
   public:
   	const_iterator();
 
   	const_iterator& operator++();
 
+    Letra operator*() const;
+
+    bool operator!=(const const_iterator &otro_it) const;
+
+    friend class ConjuntoLetras;
   };
 
-  iterator begin();
+  //iterator begin();
 
-  iterator end();
+  //iterator end();
 
-  const_iterator cbegin();
+  const_iterator cbegin() const;
 
-  const_iterator cend();*/
+  const_iterator cend() const;
 };

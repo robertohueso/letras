@@ -27,6 +27,13 @@ istream & operator>>(istream& is, ConjuntoLetras &conj){
 	}
 }
 
+ostream & operator<<(ostream& os, const ConjuntoLetras &conj){
+	os << "#Letra Cantidad Puntos\n";
+	for(ConjuntoLetras::const_iterator it = conj.cbegin(); it != conj.cend(); ++it)
+		os << (*it).getCaracter() << " " << (*it).getRepeticiones() << " " << (*it).getPuntuacion() << "\n";
+	return os;
+}
+
 /*ConjuntoLetras::iterator ConjuntoLetras::begin(){
 	ConjuntoLetras::iterator iter_nuevo;
 	iter_nuevo.it = conjunto.begin();
@@ -48,9 +55,30 @@ ConjuntoLetras::const_iterator ConjuntoLetras::cend(){
 	iter_nuevo.it = conjunto.cend();
 	return iter_nuevo;
 }
+*/
 
-
-ConjuntoLetras::iterator ConjuntoLetras::iterator::operator++ (){
-	this->it++;
+ConjuntoLetras::const_iterator ConjuntoLetras::const_iterator::operator++(){
+	++it;
 	return *this;
-}*/
+}
+
+Letra ConjuntoLetras::const_iterator::operator*() const{
+	Letra letra(it->second.getCaracter(), it->second.getRepeticiones(), it->second.getPuntuacion());
+	return letra;
+}
+
+bool ConjuntoLetras::const_iterator::operator!=(const const_iterator &otro_it) const{
+	return (this->it == otro_it.it);
+}
+
+ConjuntoLetras::const_iterator ConjuntoLetras::cbegin() const{
+	map<char, Letra>::const_iterator nuevo_iterador;
+	nuevo_iterador.it = conjunto.cbegin();
+	return nuevo_iterador;
+}
+
+ConjuntoLetras::const_iterator ConjuntoLetras::cend() const{
+	map<char, Letra>::const_iterator nuevo_iterador;
+	nuevo_iterador.it = conjunto.cend();
+	return nuevo_iterador;
+}
