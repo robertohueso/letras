@@ -1,5 +1,6 @@
 #include "ConjuntoLetras.h"
 
+
 ConjuntoLetras::ConjuntoLetras(){}
 
 void ConjuntoLetras::autoRepartirCantidades(){
@@ -32,6 +33,14 @@ Letra ConjuntoLetras::getLetra(const char &letra_a_buscar) const{
 	}
 }
 
+void ConjuntoLetras::setPuntos(char letra, int puntos){
+	map<char,Letra>::iterator it;
+	it = conjunto.find(letra);
+
+	(*it).second.setPuntos(puntos);
+}
+
+
 istream& ConjuntoLetras::leerPuntos(istream& is){
 	string basura;
 	string letra;
@@ -43,7 +52,8 @@ istream& ConjuntoLetras::leerPuntos(istream& is){
 		getline(is, repeticiones, '\t');
 		getline(is, puntos, '\n');
 
-		cout << puntos;
+		int valor = atoi(puntos.c_str());
+		setPuntos(letra[0],valor);
 	}
 	return is;
 }
