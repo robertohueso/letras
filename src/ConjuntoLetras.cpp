@@ -2,6 +2,18 @@
 
 ConjuntoLetras::ConjuntoLetras(){}
 
+void ConjuntoLetras::autoRepartirCantidades(){
+	double letras_totales = 0.0;
+	for(ConjuntoLetras::iterator it = this->begin(); it != this->end(); ++it)
+		letras_totales += (*it).getRepeticiones();
+	for(ConjuntoLetras::iterator it = this->begin(); it != this->end(); ++it){
+		unsigned int cantidad = ((*it).getRepeticiones()/letras_totales)*100;
+		if(cantidad==0)
+			cantidad=1;
+		(*it).setRepeticiones(cantidad);
+	}
+}
+
 void ConjuntoLetras::insertar(const Letra &nueva_letra){
 	pair<map<char, Letra>::iterator, bool> resultado;
 	pair<char, Letra> nueva_inserccion(nueva_letra.getCaracter(), nueva_letra);
@@ -20,29 +32,21 @@ Letra ConjuntoLetras::getLetra(const char &letra_a_buscar) const{
 	}
 }
 
-void ConjuntoLetras::autoRepartirCantidades(){
-	double letras_totales = 0.0;
-	for(ConjuntoLetras::iterator it = this->begin(); it != this->end(); ++it)
-		letras_totales += (*it).getRepeticiones();
-	for(ConjuntoLetras::iterator it = this->begin(); it != this->end(); ++it){
-		unsigned int cantidad = ((*it).getRepeticiones()/letras_totales)*100;
-		if(cantidad==0)
-			cantidad=1;
-		(*it).setRepeticiones(cantidad);
-	}
-}
+istream& ConjuntoLetras::leerPuntos(istream& is){
+	string basura;
+	string letra;
+	string repeticiones;
+	string puntos;
+		getline(is, basura, '\n');
+	while(!is.eof()){
+		getline(is, letra, '\t');
+		getline(is, repeticiones, '\t');
+		getline(is, puntos, '\n');
 
-/*void ConjuntoLetras::autoRepartirCantidades(){
-	unsigned int letras_totales = 0;
-	for(ConjuntoLetras::const_iterator it = conj.cbegin(); it != conj.cend(); ++it)
-		letras_totales += (*it).getRepeticiones();
-	for(ConjuntoLetras::const_iterator it = conj.cbegin(); it != conj.cend(); ++it){
-		unsigned int cantidad =  (*it).getRepeticiones()/letras_totales )*100;
-		if(cantidad==0)
-			cantidad=1;
-		(*it).setRepeticiones(cantidad);
+		cout << puntos;
 	}
-}*/
+	return is;
+}
 
 istream & operator>>(istream& is, ConjuntoLetras &conj){
 	char c;
@@ -61,29 +65,6 @@ ostream & operator<<(ostream& os, const ConjuntoLetras &conj){
 		os << (*it).getCaracter() << " " << (*it).getRepeticiones() << " " << (*it).getPuntuacion() << "\n";
 	return os;
 }
-
-/*ConjuntoLetras::iterator ConjuntoLetras::begin(){
-	ConjuntoLetras::iterator iter_nuevo;
-	iter_nuevo.it = conjunto.begin();
-	return iter_nuevo;
-}
-
-ConjuntoLetras::iterator ConjuntoLetras::end(){
-	ConjuntoLetras::iterator iter_nuevo;
-	iter_nuevo.it = conjunto.end();
-	return iter_nuevo;
-}
-ConjuntoLetras::const_iterator ConjuntoLetras::cbegin(){
-	ConjuntoLetras::const_iterator iter_nuevo;
-	iter_nuevo.it = conjunto.cbegin();
-	return iter_nuevo;
-}
-ConjuntoLetras::const_iterator ConjuntoLetras::cend(){
-	ConjuntoLetras::const_iterator iter_nuevo;
-	iter_nuevo.it = conjunto.cend();
-	return iter_nuevo;
-}
-*/
 
 //--------ITERATOR------------------------------------------------
 

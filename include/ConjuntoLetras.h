@@ -1,6 +1,7 @@
 #include <map>
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "Letra.h"
 
 using namespace std;
@@ -17,11 +18,11 @@ public:
 
   Letra getLetra(const char &letra_a_buscar) const;
 
+  istream& leerPuntos(istream& is);
+
   friend istream & operator>>(istream& is, ConjuntoLetras &conj);
 
   friend ostream & operator<<(ostream& os, const ConjuntoLetras &conj);
-
-  //void setPuntos(Letra L);
 
   class iterator{
   private:
