@@ -102,14 +102,14 @@ public:
   //FIXME DOCUMENTAR Iterator
   class iterator{
   private:
-    ArbolGeneral<info>::const_iter_preorden it;
+    ArbolGeneral<info>::iter_preorden it;
 
     string cadena;
 
-    ArbolGeneral<info>::const_iter_preorden end;
+    ArbolGeneral<info>::iter_preorden end;
 
   public:
-    iterator(const ArbolGeneral<info> &arbol);
+    iterator();
 
     string operator*();
 
@@ -132,7 +132,7 @@ public:
     ArbolGeneral<info>::const_iter_preorden end;
 
   public:
-    const_iterator(const ArbolGeneral<info> &arbol);
+    const_iterator();
 
     string operator*() const;
 

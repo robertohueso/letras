@@ -60,7 +60,7 @@ int Diccionario::size() const{
 //Devuelve palabras con una longitud dada.
 vector<string> Diccionario::PalabrasLongitud(const unsigned int &longitud) const{
   vector<string> palabras;
-  Diccionario::const_iterator it(this->datos);
+  Diccionario::const_iterator it;
 
   for(it = this->cbegin(); it != this->cend(); ++it)
     if((*it).size() == longitud)
@@ -70,7 +70,7 @@ vector<string> Diccionario::PalabrasLongitud(const unsigned int &longitud) const
 
 //Indica si una palabra esta en el diccionario.
 bool Diccionario::Esta(const string &palabra) const{
-  Diccionario::const_iterator it(this->datos);
+  Diccionario::const_iterator it;
 
   for(it = this->cbegin(); it != this->cend(); ++it)
     if((*it) == palabra)
@@ -90,7 +90,7 @@ istream & operator >>(istream& is, Diccionario &D){
 
 //Escribe salida del diccionario.
 ostream& operator<<(ostream& os, const Diccionario& D){
-  Diccionario::const_iterator it(D.datos);
+  Diccionario::const_iterator it;
   for(it = D.cbegin(); it != D.cend(); ++it)
     os << '\n' << (*it);
   return os;
@@ -99,9 +99,7 @@ ostream& operator<<(ostream& os, const Diccionario& D){
 //----ITERADOR NO CONSTANTE----------------------------------------------
 
 //Constructor del iterador
-Diccionario::iterator::iterator(const ArbolGeneral<info> &arbol){
-  this->end = arbol.cend();
-}
+Diccionario::iterator::iterator(){}
 
 //Devuelve la palabra a la que apunta
 string Diccionario::iterator::operator*(){
@@ -157,27 +155,27 @@ bool Diccionario::iterator::operator!=(const iterator &otro_it){
 //Begin del iterator
 Diccionario::iterator Diccionario::begin(){
   //FIXME tener en cuenta el caso en el que no hay ninguna palabra
-  Diccionario::iterator iter_comienzo(this->datos);
+  Diccionario::iterator iter_comienzo;
   string letra;
-  iter_comienzo.it = datos.cbegin();
+  iter_comienzo.it = datos.begin();
   iter_comienzo.cadena = "";
+  iter_comienzo.end = this->datos.end();
   return iter_comienzo;
 }
 
 //End del iterator
 Diccionario::iterator Diccionario::end(){
-  Diccionario::iterator iter_final(this->datos);
-  iter_final.it = this->datos.cend();
+  Diccionario::iterator iter_final;
+  iter_final.it = this->datos.end();
   iter_final.cadena.clear();
+  iter_final.end = this->datos.end();
   return iter_final;
 }
 
 //----ITERADOR CONSTANTE----------------------------------------------
 
 //Constructor del iterador
-Diccionario::const_iterator::const_iterator(const ArbolGeneral<info> &arbol){
-  this->end = arbol.cend();
-}
+Diccionario::const_iterator::const_iterator(){}
 
 //Devuelve la palabra a la que apunta
 string Diccionario::const_iterator::operator*() const{
@@ -233,17 +231,19 @@ bool Diccionario::const_iterator::operator!=(const const_iterator &otro_it) cons
 //Begin del iterator
 Diccionario::const_iterator Diccionario::cbegin() const{
   //FIXME tener en cuenta el caso en el que no hay ninguna palabra
-  Diccionario::const_iterator iter_comienzo(this->datos);
+  Diccionario::const_iterator iter_comienzo;
   string letra;
   iter_comienzo.it = datos.cbegin();
   iter_comienzo.cadena = "";
+  iter_comienzo.end = this->datos.cend();
   return iter_comienzo;
 }
 
 //End del iterator
 Diccionario::const_iterator Diccionario::cend() const{
-  Diccionario::const_iterator iter_final(this->datos);
+  Diccionario::const_iterator iter_final;
   iter_final.it = this->datos.cend();
   iter_final.cadena.clear();
+  iter_final.end = this->datos.cend();
   return iter_final;
 }
