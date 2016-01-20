@@ -20,6 +20,30 @@ Letra ConjuntoLetras::getLetra(const char &letra_a_buscar) const{
 	}
 }
 
+void ConjuntoLetras::autoRepartirCantidades(){
+	double letras_totales = 0.0;
+	for(ConjuntoLetras::iterator it = this->begin(); it != this->end(); ++it)
+		letras_totales += (*it).getRepeticiones();
+	for(ConjuntoLetras::iterator it = this->begin(); it != this->end(); ++it){
+		unsigned int cantidad =  5;//((*it).getRepeticiones()/letras_totales)*100;
+		if(cantidad<0)
+			cantidad=1;
+		(*it).setRepeticiones(cantidad);
+	}
+}
+
+/*void ConjuntoLetras::autoRepartirCantidades(){
+	unsigned int letras_totales = 0;
+	for(ConjuntoLetras::const_iterator it = conj.cbegin(); it != conj.cend(); ++it)
+		letras_totales += (*it).getRepeticiones();
+	for(ConjuntoLetras::const_iterator it = conj.cbegin(); it != conj.cend(); ++it){
+		unsigned int cantidad =  (*it).getRepeticiones()/letras_totales )*100;
+		if(cantidad==0)
+			cantidad=1;
+		(*it).setRepeticiones(cantidad);
+	}
+}*/
+
 istream & operator>>(istream& is, ConjuntoLetras &conj){
 	char c;
 	while(!is.eof()){
@@ -27,6 +51,7 @@ istream & operator>>(istream& is, ConjuntoLetras &conj){
 		Letra nueva_letra(tolower(c));
 		conj.insertar(nueva_letra);
 	}
+	conj.autoRepartirCantidades();
 	return is;
 }
 
@@ -59,6 +84,41 @@ ConjuntoLetras::const_iterator ConjuntoLetras::cend(){
 	return iter_nuevo;
 }
 */
+
+//--------ITERATOR------------------------------------------------
+
+ConjuntoLetras::iterator::iterator(){}
+
+ConjuntoLetras::iterator& ConjuntoLetras::iterator::operator++(){
+	++it;
+	return *this;
+}
+
+Letra& ConjuntoLetras::iterator::operator*(){
+	return (*it).second;
+}
+
+bool ConjuntoLetras::iterator::operator!=(const iterator &otro_it) const{
+	return (this->it != otro_it.it);
+}
+
+bool ConjuntoLetras::iterator::operator==(const iterator &otro_it) const{
+	return (this->it == otro_it.it);
+}
+
+ConjuntoLetras::iterator ConjuntoLetras::begin(){
+	ConjuntoLetras::iterator nuevo_iterador;
+	nuevo_iterador.it = conjunto.begin();
+	return nuevo_iterador;
+}
+
+ConjuntoLetras::iterator ConjuntoLetras::end(){
+	ConjuntoLetras::iterator nuevo_iterador;
+	nuevo_iterador.it = conjunto.end();
+	return nuevo_iterador;
+}
+
+//--------CONST_ITERATOR------------------------------------------
 
 ConjuntoLetras::const_iterator::const_iterator(){}
 

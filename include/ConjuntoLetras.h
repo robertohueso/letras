@@ -9,6 +9,7 @@ class ConjuntoLetras{
 private:
   map<char, Letra> conjunto;
 
+  void autoRepartirCantidades();
 public:
   ConjuntoLetras();
 
@@ -22,15 +23,22 @@ public:
 
   //void setPuntos(Letra L);
 
-  /*class iterator{
+  class iterator{
   private:
-  	set<Letra>::iterator it;
+  	map<char, Letra>::iterator it;
   public:
   	iterator();
 
   	iterator& operator++();
 
-  };*/
+    Letra& operator*();
+
+    bool operator!=(const iterator &otro_it) const;
+
+    bool operator==(const iterator &otro_it) const;
+
+    friend class ConjuntoLetras;
+  };
 
   class const_iterator{
   private:
@@ -49,9 +57,9 @@ public:
     friend class ConjuntoLetras;
   };
 
-  //iterator begin();
+  iterator begin();
 
-  //iterator end();
+  iterator end();
 
   const_iterator cbegin() const;
 
