@@ -25,8 +25,8 @@ void ConjuntoLetras::autoRepartirCantidades(){
 	for(ConjuntoLetras::iterator it = this->begin(); it != this->end(); ++it)
 		letras_totales += (*it).getRepeticiones();
 	for(ConjuntoLetras::iterator it = this->begin(); it != this->end(); ++it){
-		unsigned int cantidad =  5;//((*it).getRepeticiones()/letras_totales)*100;
-		if(cantidad<0)
+		unsigned int cantidad = ((*it).getRepeticiones()/letras_totales)*100;
+		if(cantidad==0)
 			cantidad=1;
 		(*it).setRepeticiones(cantidad);
 	}
