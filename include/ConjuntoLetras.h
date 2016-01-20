@@ -7,6 +7,8 @@
 
 
 using namespace std;
+#ifndef __CONJUNTO_LETRAS_H__
+#define __CONJUNTO_LETRAS_H__
 
 class ConjuntoLetras{
 private:
@@ -70,3 +72,5 @@ public:
 
   const_iterator cend() const;
 };
+
+#endif
