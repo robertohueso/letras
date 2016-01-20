@@ -21,6 +21,9 @@ $(OBJ)/Letra.o: $(SRC)/Letra.cpp $(INC)/Letra.h
 
 $(OBJ)/ConjuntoLetras.o: $(SRC)/ConjuntoLetras.cpp $(OBJ)/Letra.o $(INC)/ConjuntoLetras.h
 		$(CXX) $(CPPFLAGS) $(SRC)/ConjuntoLetras.cpp  -o $(OBJ)/ConjuntoLetras.o
+
+$(OBJ)/BolsaLetras.o: $(OBJ)/ConjuntoLetras.o $(INC)/BolsaLetras.h $(SRC)/BolsaLetras.cpp
+		$(CXX) $(CPPFLAGS) $(SRC)/BolsaLetras.cpp  -o $(OBJ)/BolsaLetras.o
 # ************ Generación de documentación ******************
 documentacion:
 	doxygen doc/doxys/Doxyfile
