@@ -116,7 +116,7 @@ int main(int argc, char *argv[]){
 				it_map->second++;
 		}
 
-		cout << "\nLas soluciones de la maquina son de mejor a peor:\n";
+		cout << "\nLas soluciones de la maquina son:\n";
 		while(numero_letras > 0){
 			soluciones_maquina = diccionario.PalabrasLongitud(numero_letras);
 
