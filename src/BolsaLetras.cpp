@@ -17,6 +17,14 @@ char BolsaLetras::getLetra(){
     letra_actual = letras[posicion];
   }while(letra_actual == '\0');
   letras[posicion] = '\0';
-  
-  return letra_actual;
+
+  return (char)tolower(letra_actual);
+}
+
+vector<char> BolsaLetras::getVectorLetras(unsigned int cantidad){
+  vector<char> letras;
+  for(unsigned int i = 0; i < cantidad; i++)
+    letras.push_back(this->getLetra());
+
+  return letras;
 }

@@ -9,4 +9,6 @@ public:
   BolsaLetras(const ConjuntoLetras &conjunto);
 
   char getLetra();
+
+  vector<char> getVectorLetras(unsigned int cantidad);
 };
