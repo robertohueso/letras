@@ -11,27 +11,6 @@ void imprimeLasLetras(const vector<char> &lista_letras){
 	cout << "\n";
 }
 
-int imprimePuntuacionLongitud(string palabra){
-	return palabra.size();
-}
-
-void palabraContieneLetras(vector<string> &palabras, vector<char> letras){
-	for(int unsigned palabra_actual = 0; palabra_actual < palabras.size(); palabra_actual++){
-		//bool encontrado = true;
-		for(int unsigned caracter_actual = 0; caracter_actual < letras.size(); caracter_actual++){
-			if(palabras[palabra_actual].find((char)tolower(letras[caracter_actual])) == string::npos)
-				palabras[palabra_actual] = "\0";
-		}
-	}
-	bool vacio = true;
-	for(int unsigned i = 0; i < palabras.size(); i++){
-		if(palabras[i] != "\0")
-			vacio = false;
-	}
-	if(vacio)
-		palabras.clear();
-}
-
 int main(int argc, char *argv[]){
 	if(argc != 5){
 		cout << "Error en el nº de argumentos";
