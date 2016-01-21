@@ -11,6 +11,13 @@ void imprimeLasLetras(const vector<char> &lista_letras){
 	cout << "\n";
 }
 
+unsigned int getPuntosPalabra(const string &palabra, const ConjuntoLetras &conjunto){
+	unsigned int total = 0;
+	for(size_t i = 0; i < palabra.size(); i++)
+		total += conjunto.getLetra(palabra[i]).getPuntuacion();
+	return total;
+}
+
 int main(int argc, char *argv[]){
 	if(argc != 5){
 		cout << "Error en el nº de argumentos";
@@ -41,6 +48,8 @@ int main(int argc, char *argv[]){
 
 	//Modo de juego
 	if(strcmp(argv[4], "L") == 0){
+		//Por caracteres-----------------------------------------------------
+
 		map<char, int> map_caracteres;
 		unsigned int max_longitud = 0;
 		unsigned int puntuacion = solucion.size();
@@ -91,7 +100,58 @@ int main(int argc, char *argv[]){
 		else
 			cout << "Has perdido :P\n";
 	}else if(strcmp(argv[4], "P") == 0){
-		//Por puntos
+		//Por puntos----------------------------------------------------------
+
+		map<char, int> map_caracteres;
+		unsigned int max_puntos = 0;
+		unsigned int puntuacion = getPuntosPalabra(solucion, letras);
+		cout << puntuacion;
+
+		for(vector<char>::iterator it = letras_aleatorias.begin(); it != letras_aleatorias.end(); ++it){
+			map<char, int>::iterator it_map;
+			it_map = map_caracteres.find(*it);
+			if(it_map == map_caracteres.end())
+				map_caracteres.insert(pair<char, int>((*it), 1));
+			else
+				it_map->second++;
+		}
+
+		cout << "\nLas soluciones de la maquina son de mejor a peor:\n";
+		while(numero_letras > 0){
+			soluciones_maquina = diccionario.PalabrasLongitud(numero_letras);
+
+			for(vector<string>::iterator palabra = soluciones_maquina.begin();
+											palabra != soluciones_maquina.end(); ++palabra){
+				map<char, int> map_temporal(map_caracteres);
+				bool encontrado = true;
+				for(size_t letra = 0; letra < palabra->size() && encontrado; letra++){
+					map<char, int>::iterator it_map;
+					it_map = map_temporal.find((*palabra)[letra]);
+					if(it_map != map_temporal.end() && it_map->second != 0)
+						it_map->second--;
+					else{
+						encontrado = false;
+						(*palabra) = "\0";
+					}
+				}
+			}
+
+			for(size_t i = 0; i < soluciones_maquina.size(); i++){
+				if(soluciones_maquina[i] != "\0")
+					cout << soluciones_maquina[i] << " Puntuacion: " << getPuntosPalabra(soluciones_maquina[i], letras) << "\n";
+				if(soluciones_maquina[i] != "\0" && getPuntosPalabra(soluciones_maquina[i], letras) > max_puntos)
+					max_puntos = getPuntosPalabra(soluciones_maquina[i], letras);
+			}
+
+			numero_letras--;
+		}
+
+		//Has ganado o perdido
+		if(diccionario.Esta(solucion) && puntuacion == max_puntos)
+			cout << "Has ganado... esta vez\n";
+		else
+			cout << "Has perdido :P\n";
+
 	}else{
 		cout << "Error en el nº de argumentos";
 		return 0;
