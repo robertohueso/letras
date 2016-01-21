@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include "Diccionario.h"
 #include "Letra.h"
 
 
@@ -27,6 +28,8 @@ public:
   istream& leerPuntos(istream& is);
 
   friend istream & operator>>(istream& is, ConjuntoLetras &conj);
+
+  friend void operator>>(const Diccionario &Dic, ConjuntoLetras &conj);
 
   friend ostream & operator<<(ostream& os, const ConjuntoLetras &conj);
 

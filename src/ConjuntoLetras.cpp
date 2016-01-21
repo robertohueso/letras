@@ -70,6 +70,20 @@ istream & operator>>(istream& is, ConjuntoLetras &conj){
 	return is;
 }
 
+void operator>>(const Diccionario &Dic, ConjuntoLetras &conj){
+	Diccionario::const_iterator palabra;
+	char c;
+
+	for(palabra = Dic.cbegin(); palabra != Dic.cend(); ++palabra){
+		for(size_t i = 0; i < (*palabra).size(); i++){
+			c = (*palabra)[i];
+			Letra nueva_letra(tolower(c));
+			conj.insertar(nueva_letra);
+		}
+	}
+	conj.autoRepartirCantidades();
+}
+
 ostream & operator<<(ostream& os, const ConjuntoLetras &conj){
 	os << "#Letra Cantidad Puntos\n";
 	for(ConjuntoLetras::const_iterator it = conj.cbegin(); it != conj.cend(); ++it)

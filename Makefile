@@ -11,10 +11,10 @@ $(BIN)/testdiccionario: $(OBJ)/Diccionario.o $(SRC)/testdiccionario.cpp
 	$(CXX) -g -Wall -I$(INC) $(SRC)/testdiccionario.cpp $(OBJ)/Diccionario.o -o $(BIN)/testdiccionario
 
 $(BIN)/cantidad_letras: $(OBJ)/ConjuntoLetras.o $(SRC)/cantidad_letras.cpp $(OBJ)/Diccionario.o
-	$(CXX) -g -Wall -I$(INC) $(SRC)/cantidad_letras.cpp $(OBJ)/Letra.o $(OBJ)/ConjuntoLetras.o -o $(BIN)/cantidad_letras
+	$(CXX) -g -Wall -I$(INC) $(SRC)/cantidad_letras.cpp $(OBJ)/Letra.o $(OBJ)/ConjuntoLetras.o $(OBJ)/Diccionario.o -o $(BIN)/cantidad_letras
 
 $(BIN)/letras: $(OBJ)/ConjuntoLetras.o $(OBJ)/BolsaLetras.o $(SRC)/letras.cpp
-	$(CXX) -g -Wall -I$(INC) $(SRC)/letras.cpp $(OBJ)/Letra.o $(OBJ)/ConjuntoLetras.o $(OBJ)/BolsaLetras.o -o $(BIN)/letras
+	$(CXX) -g -Wall -I$(INC) $(SRC)/letras.cpp $(OBJ)/Letra.o $(OBJ)/ConjuntoLetras.o $(OBJ)/BolsaLetras.o $(OBJ)/Diccionario.o -o $(BIN)/letras
 
 $(OBJ)/Diccionario.o: $(SRC)/Diccionario.cpp $(INC)/Diccionario.h $(INC)/ArbolGeneral.cpp $(INC)/ArbolGeneral.h
 		$(CXX) $(CPPFLAGS) $(SRC)/Diccionario.cpp -o $(OBJ)/Diccionario.o

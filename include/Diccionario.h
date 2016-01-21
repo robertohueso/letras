@@ -5,6 +5,9 @@
 
 using namespace std;
 
+#ifndef __DICCIONARIO_H__
+#define __DICCIONARIO_H__
+
 /**
   *@brief info
   *
@@ -153,3 +156,5 @@ public:
 
   const_iterator cend() const;
 };
+
+#endif
