@@ -27,7 +27,7 @@ int main(int argc, char *argv[]){
 	ifstream lectura_puntos(argv[2]);
 	Diccionario diccionario;
 	ConjuntoLetras letras;
-	unsigned int numero_letras;
+	unsigned int numero_letras, modo_juego;
 	vector<char> letras_aleatorias;
 	vector<string> soluciones_maquina;
 	string solucion;
@@ -38,16 +38,28 @@ int main(int argc, char *argv[]){
 	letras.leerPuntos(lectura_puntos);
 	BolsaLetras bolsa(letras);
 
+	//Comprueba el modo de juego
+	if(strcmp(argv[4], "L") == 0)
+		modo_juego = 1;
+	else if(strcmp(argv[4], "P") == 0)
+		modo_juego = 2;
+	else{
+		cout << "Error en el modo de juego\n";
+		return 0;
+	}
+
 	//Carga las letras aleatorias
 	numero_letras = atoi(argv[3]);
 	letras_aleatorias = bolsa.getVectorLetras(numero_letras);
+	if(modo_juego == 2)
+		cout << letras;
 	imprimeLasLetras(letras_aleatorias);
 	cout << "Dime tu solucion: ";
 	cin >> solucion;
 	cout << "\nPuntuacion: ";
 
 	//Modo de juego
-	if(strcmp(argv[4], "L") == 0){
+	if(modo_juego == 1){
 		//Por caracteres-----------------------------------------------------
 
 		map<char, int> map_caracteres;
@@ -99,7 +111,7 @@ int main(int argc, char *argv[]){
 			cout << "Has ganado... esta vez\n";
 		else
 			cout << "Has perdido :P\n";
-	}else if(strcmp(argv[4], "P") == 0){
+	}else if(modo_juego == 2){
 		//Por puntos----------------------------------------------------------
 
 		map<char, int> map_caracteres;
@@ -152,11 +164,7 @@ int main(int argc, char *argv[]){
 		else
 			cout << "Has perdido :P\n";
 
-	}else{
-		cout << "Error en el nº de argumentos";
-		return 0;
 	}
-
 
 	return 0;
 }

@@ -87,7 +87,7 @@ void operator>>(const Diccionario &Dic, ConjuntoLetras &conj){
 ostream & operator<<(ostream& os, const ConjuntoLetras &conj){
 	os << "#Letra Cantidad Puntos\n";
 	for(ConjuntoLetras::const_iterator it = conj.cbegin(); it != conj.cend(); ++it)
-		os << (*it).getCaracter() << " " << (*it).getRepeticiones() << " " << (*it).getPuntuacion() << "\n";
+		os << (*it).getCaracter() << "\t" << (*it).getRepeticiones() << "\t" << (*it).getPuntuacion() << "\n";
 	return os;
 }
 

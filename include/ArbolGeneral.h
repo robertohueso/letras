@@ -116,7 +116,10 @@ class ArbolGeneral{
     void destruir(nodo * n);
 
     /**
-      * @brief FIXME documentar
+      * @brief Destruye el subárbol
+      * @param n Nodo a destruir, junto con sus hermanos y descendientes.
+      *
+      * Libera los recursos que ocupan \e n, sus hermanos y sus descendientes.
       */
     void destruirConHermanos(nodo * n);
 
