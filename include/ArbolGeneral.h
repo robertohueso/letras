@@ -567,17 +567,25 @@ class ArbolGeneral{
     };
 
     /**
-     * @brief Inicializa un iterador a la raiz del arbol. Nivel -1
+     * @brief Inicializa un iterador a la raiz del arbol. Nivel 0
      */
 
      iter_preorden begin();
+
+     /**
+      * @brief Inicializa un iterador constante a la raiz del arbol. Nivel 0
+      */
      const_iter_preorden cbegin() const;
 
 
     /**
-     * @brief Inicializa un iterador al nodo nulo con la raiz del arbol. Nivel -1
+     * @brief Inicializa un iterador al nodo nulo con la raiz del arbol. Nivel 0
      */
      iter_preorden end();
+
+     /**
+      * @brief Inicializa un iterador al nodo nulo con la raiz del arbol. Nivel 0
+      */
      const_iter_preorden cend() const;
 
 };

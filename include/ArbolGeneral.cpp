@@ -229,14 +229,14 @@ ArbolGeneral<Tbase>::const_iter_preorden::const_iter_preorden(){
 template <class Tbase>
 typename ArbolGeneral<Tbase>::const_iter_preorden& ArbolGeneral<Tbase>::const_iter_preorden::operator++(){
   if (it != NULL){
-       if (it->izqda != NULL){ // Si hay un hijo a la izquierda se mueve a él.
+       if (it->izqda != NULL){
            it = it->izqda;
            level++;
        }
-       else if (it->drcha != NULL){ // Else Si hay un hermano a la derecha se mueve a él.
+       else if (it->drcha != NULL){
            it = it->drcha;
        }
-       else{  // Else se mueve al hermano a la derecha del primer padre que lo tenga.
+       else{
            while(it != NULL && it->drcha == NULL){
                it = it->padre;
                level--;
@@ -248,13 +248,12 @@ typename ArbolGeneral<Tbase>::const_iter_preorden& ArbolGeneral<Tbase>::const_it
        }
    }
    else{
-       it = raiz; // El recorrido es cíclico.
+       it = raiz;
        level = 0;
    }
    return *this;
 }
 
-//Iterator begin FIXME DOCUMENTAR
 template <class Tbase>
 typename ArbolGeneral<Tbase>::const_iter_preorden ArbolGeneral<Tbase>::cbegin() const{
   ArbolGeneral<Tbase>::const_iter_preorden iterador;
@@ -264,7 +263,6 @@ typename ArbolGeneral<Tbase>::const_iter_preorden ArbolGeneral<Tbase>::cbegin() 
   return iterador;
 }
 
-//Iterator end FIXME DOCUMENTAR
 template <class Tbase>
 typename ArbolGeneral<Tbase>::const_iter_preorden ArbolGeneral<Tbase>::cend() const{
   ArbolGeneral<Tbase>::const_iter_preorden iterador;
