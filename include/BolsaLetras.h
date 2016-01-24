@@ -1,7 +1,27 @@
 #include <vector>
 #include "ConjuntoLetras.h"
 
-//FIXME Documentar TDA
+/**
+   @brief T.D.A. BolsaLetras
+
+   \b Definición:
+   Una instancia \e a del tipo de dato abstracto BolsaLetras almacena (físicamente)
+   las Letras de un ConjuntoLetras
+
+   - rep.ConjuntoLetras -> vector<char> con cada una de las letras repetidas
+   tantas veces como se indique
+   - Debe contener al menos 1 letra
+
+   De esta manera obtendremos aleatoriamente letras del Conjunto.
+
+   Para poder usar el tipo de dato BolsaLetras se debe incluir el fichero
+
+   <tt>\#include BolsaLetras.h</tt>
+
+   @author Roberto Hueso Gómez y Abel Sánchez Alba.
+   @date 24/01/2016
+*/
+
 class BolsaLetras{
 private:
   /**
