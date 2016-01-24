@@ -49,7 +49,7 @@ private:
   char getLetra();
 
   /**
-    @brief Prepara la bolsa para otro uso
+    *@brief Prepara la bolsa para otro uso
   **/
   void reiniciar();
 
