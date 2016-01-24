@@ -12,6 +12,11 @@ Diccionario::Diccionario(){
   datos.AsignaRaiz(raiz);
 }
 
+//Constructor de copia
+Diccionario::Diccionario(const Diccionario &dic){
+  this->datos = dic.datos;
+}
+
 //Inserta la palabra en el Arbol
 void Diccionario::insertarPalabra(string palabra){
   ArbolGeneral<info>::Nodo nodo_actual = datos.raiz();

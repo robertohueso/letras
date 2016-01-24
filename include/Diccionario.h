@@ -94,6 +94,11 @@ public:
 	**/
   Diccionario();
 
+  /**
+		@brief Constructor de copia
+	**/
+  Diccionario(const Diccionario &dic);
+
 	/**
 		Devuelve el numero de palabras en el diccionario
 	**/
