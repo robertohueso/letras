@@ -1,6 +1,26 @@
-//FIXME DOCUMENTAR Letra
 #ifndef __LETRA_H__
 #define __LETRA_H__
+
+/**
+   @brief T.D.A. Letra
+
+   \b Definición:
+   Una instancia \e a del tipo de dato abstracto Letra contiene
+   una letra con el numero de veces que se repite y la puntuación que recibe.
+
+   - rep.letra -> {char(Letra), repeticones de la letra, puntación de la letra}
+   letra por letra en cada uno de sus nodos que son nodos del tipo de dato info.
+   - El caracter siempre es el mismo
+
+   Se establece una relacion de caracter con sus repeticiones y puntuacion
+
+   Para poder usar el tipo de dato Letra se debe incluir el fichero
+
+   <tt>\#include Letra.h</tt>
+
+   @author Roberto Hueso Gómez y Abel Sánchez Alba.
+   @date 24/01/2016
+*/
 
 class Letra{
 private:
