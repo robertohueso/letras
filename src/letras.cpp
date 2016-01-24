@@ -59,7 +59,7 @@ int main(int argc, char *argv[]){
 	if(modo_juego == 2)
 		cout << letras;
 	imprimeLasLetras(letras_aleatorias);
-	cout << "Dime tu solucion: ";
+	cout << "Dime tu solucion (En minúscula): ";
 	cin >> solucion;
 	cout << "\nPuntuacion: ";
 

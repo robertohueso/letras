@@ -35,6 +35,24 @@ private:
   */
   vector<char> letras;
 
+  /**
+    *@brief Vector de char para el funcionamiento interno
+  */
+  vector<char> letras_aux;
+
+  /**
+    @brief Devuelve una letra obtenida de manera aleatoria del vector
+    * y marca esa letra como "\0" en el vector
+    *
+    *@return Char con el caracter de la letra
+  **/
+  char getLetra();
+
+  /**
+    @brief Prepara la bolsa para otro uso
+  **/
+  void reiniciar();
+
 public:
   /**
 		@brief Construye una bolsa de letras
@@ -43,14 +61,6 @@ public:
     *@param conjunto Conjunto de letras del que se tomarán los datos
 	**/
   BolsaLetras(const ConjuntoLetras &conjunto);
-
-  /**
-		@brief Devuelve una letra obtenida de manera aleatoria del vector
-    * y marca esa letra como "\0" en el vector
-    *
-    *@return Char con el caracter de la letra
-	**/
-  char getLetra();
 
   /**
 		@brief Obtiene una cantidad de letras extraidas de manera aleatoria
