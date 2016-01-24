@@ -100,18 +100,6 @@ ConjuntoLetras::iterator& ConjuntoLetras::iterator::operator++(){
 	return *this;
 }
 
-Letra& ConjuntoLetras::iterator::operator*(){
-	return (*it).second;
-}
-
-bool ConjuntoLetras::iterator::operator!=(const iterator &otro_it) const{
-	return (this->it != otro_it.it);
-}
-
-bool ConjuntoLetras::iterator::operator==(const iterator &otro_it) const{
-	return (this->it == otro_it.it);
-}
-
 ConjuntoLetras::iterator ConjuntoLetras::begin(){
 	ConjuntoLetras::iterator nuevo_iterador;
 	nuevo_iterador.it = conjunto.begin();
@@ -131,18 +119,6 @@ ConjuntoLetras::const_iterator::const_iterator(){}
 ConjuntoLetras::const_iterator& ConjuntoLetras::const_iterator::operator++(){
 	++it;
 	return *this;
-}
-
-Letra ConjuntoLetras::const_iterator::operator*() const{
-	return (*it).second;
-}
-
-bool ConjuntoLetras::const_iterator::operator!=(const const_iterator &otro_it) const{
-	return (this->it != otro_it.it);
-}
-
-bool ConjuntoLetras::const_iterator::operator==(const const_iterator &otro_it) const{
-	return (this->it == otro_it.it);
 }
 
 ConjuntoLetras::const_iterator ConjuntoLetras::cbegin() const{
