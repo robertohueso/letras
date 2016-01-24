@@ -1,3 +1,9 @@
+/////////////////////////////////////
+// Por Roberto Hueso Gómez         //
+// Por Abel José Sánchez Alba      //
+/////////////////////////////////////
+
+
 #include "Diccionario.h"
 
 //Constructor por defecto de diccionario.

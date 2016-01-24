@@ -1,5 +1,10 @@
-#include "ConjuntoLetras.h"
+/////////////////////////////////////
+// Por Roberto Hueso Gómez         //
+// Por Abel José Sánchez Alba      //
+/////////////////////////////////////
 
+
+#include "ConjuntoLetras.h"
 
 ConjuntoLetras::ConjuntoLetras(){}
 

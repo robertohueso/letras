@@ -1,3 +1,8 @@
+/////////////////////////////////////
+// Por Roberto Hueso Gómez         //
+// Por Abel José Sánchez Alba      //
+/////////////////////////////////////
+
 #include <string.h>
 #include <map>
 #include "ConjuntoLetras.h"

@@ -1,3 +1,9 @@
+/////////////////////////////////////
+// Por Roberto Hueso Gómez         //
+// Por Abel José Sánchez Alba      //
+/////////////////////////////////////
+
+
 #ifndef __LETRA_H__
 #define __LETRA_H__
 

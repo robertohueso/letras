@@ -1,3 +1,9 @@
+/////////////////////////////////////
+// Por Roberto Hueso Gómez         //
+// Por Abel José Sánchez Alba      //
+/////////////////////////////////////
+
+
 #ifndef __ArbolGeneral_h__
 #define __ArbolGeneral_h__
 

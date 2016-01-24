@@ -1,7 +1,19 @@
+/////////////////////////////////////
+// Por Roberto Hueso Gómez         //
+// Por Abel José Sánchez Alba      //
+/////////////////////////////////////
+
+
 #include "ConjuntoLetras.h"
 #include <iostream>
 #include <fstream>
 #include <string>
+
+/*
+	El enunciado de este ejercicio queda abierto a ambigüedad,
+	de modo que hemos implementado lo que nos ha parecido mas
+	cercano a lo que se pide.
+*/
 
 using namespace std;
 

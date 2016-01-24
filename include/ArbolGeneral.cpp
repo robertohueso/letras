@@ -1,3 +1,8 @@
+/////////////////////////////////////
+// Por Roberto Hueso Gómez         //
+// Por Abel José Sánchez Alba      //
+/////////////////////////////////////
+
 //Constructor parametros nodo
 template <class Tbase>
 ArbolGeneral<Tbase>::nodo::nodo(const Tbase &etiqueta, nodo *izqda, nodo *drcha, nodo *padre)
@@ -171,14 +176,14 @@ ArbolGeneral<Tbase>::iter_preorden::iter_preorden(){
 template <class Tbase>
 typename ArbolGeneral<Tbase>::iter_preorden& ArbolGeneral<Tbase>::iter_preorden::operator ++(){
   if (it != NULL){
-       if (it->izqda != NULL){ // Si hay un hijo a la izquierda se mueve a él.
+       if (it->izqda != NULL){
            it = it->izqda;
            level++;
        }
-       else if (it->drcha != NULL){ // Else Si hay un hermano a la derecha se mueve a él.
+       else if (it->drcha != NULL){
            it = it->drcha;
        }
-       else{  // Else se mueve al hermano a la derecha del primer padre que lo tenga.
+       else{
            while(it != NULL && it->drcha == NULL){
                it = it->padre;
                level--;
@@ -190,7 +195,7 @@ typename ArbolGeneral<Tbase>::iter_preorden& ArbolGeneral<Tbase>::iter_preorden:
        }
    }
    else{
-       it = raiz; // El recorrido es cíclico.
+       it = raiz;
        level = 0;
    }
    return *this;
