@@ -244,7 +244,9 @@ class ArbolGeneral{
       * Devuelve el nodo raíz, que es 0 (nulo) si el árbol está vacío.
       * La operación se realiza en tiempo O(1).
       */
-    Nodo raiz() const;
+    inline Nodo raiz() const{
+      return this->laraiz;
+    }
 
     /**
       * @brief Hijo más a la izquierda
@@ -256,7 +258,9 @@ class ArbolGeneral{
       * si no tiene hijo más a la izquierda.
       * La operación se realiza en tiempo O(1).
       */
-    Nodo hijomasizquierda(const Nodo n) const;
+    inline Nodo hijomasizquierda(const Nodo n) const{
+      return n->izqda;
+    }
 
     /**
       * @brief Hermano derecha
@@ -268,7 +272,9 @@ class ArbolGeneral{
       * si no tiene hermano a la derecha.
       * La operación se realiza en tiempo O(1).
       */
-    Nodo hermanoderecha(const Nodo n) const;
+    inline Nodo hermanoderecha(const Nodo n) const{
+      return n->drcha;
+    }
 
     /**
       * @brief Nodo padre
@@ -279,7 +285,9 @@ class ArbolGeneral{
       * Devuelve el nodo padre de \e n, que valdrá 0 (nulo) si es la raíz.
       * La operación se realiza en tiempo O(1).
       */
-    Nodo padre(const Nodo n) const;
+    inline Nodo padre(const Nodo n) const{
+      return n->padre;
+    }
 
     /**
       * @brief Etiqueta de un nodo
@@ -291,7 +299,9 @@ class ArbolGeneral{
       * modificiar o usar el valor.
       * La operación se realiza en tiempo O(1).
       */
-    Tbase& etiqueta(const Nodo n);
+    inline Tbase& etiqueta(const Nodo n){
+      return n->etiqueta;
+    }
 
     /**
       * @brief Etiqueta de un nodo
@@ -303,7 +313,9 @@ class ArbolGeneral{
       * tanto no se puede modificiar el valor.
       * La operación se realiza en tiempo O(1).
       */
-    const Tbase& etiqueta(const Nodo n) const;
+    inline const Tbase& etiqueta(const Nodo n) const{
+      return n->etiqueta;
+    }
 
     /**
       * @brief Copia subárbol
@@ -387,7 +399,9 @@ class ArbolGeneral{
       * La operación se realiza en tiempo O(n).
       * @see contar
       */
-    int size() const;
+    inline int size() const{
+      return this->contar(this->laraiz);
+    }
 
     /**
       * @brief Vacío
@@ -396,7 +410,9 @@ class ArbolGeneral{
       *
       * La operación se realiza en tiempo O(1).
       */
-    bool empty() const;
+    inline bool empty() const{
+      return (this->laraiz == NULL);
+    }
 
     /**
       * @brief Operador de comparación (igualdad)
@@ -407,7 +423,9 @@ class ArbolGeneral{
       * La operación se realiza en tiempo O(n).
       * @see soniguales
       */
-    bool operator == (const ArbolGeneral<Tbase>& v) const;
+    inline bool operator == (const ArbolGeneral<Tbase>& v) const{
+      return this->soniguales(this->laraiz, v.laraiz);
+    }
 
     /**
       * @brief Operador de comparación (diferencia)
@@ -417,7 +435,9 @@ class ArbolGeneral{
       *
       * La operación se realiza en tiempo O(n).
       */
-    bool operator != (const ArbolGeneral<Tbase>& v) const;
+    inline bool operator != (const ArbolGeneral<Tbase>& v) const{
+      return !(this->soniguales(this->laraiz, v.laraiz));
+    }
 
 
     /**
@@ -441,7 +461,9 @@ class ArbolGeneral{
 	  *
 	  * */
 
-	 Tbase & operator*();
+	 inline Tbase & operator*(){
+     return it->etiqueta;
+   }
 
 
 	 /**
@@ -449,7 +471,9 @@ class ArbolGeneral{
 	  *
 	  * */
 
-	 int getlevel()const;
+	 inline int getlevel() const{
+     return this->level;
+   }
 
 	 /**
 	  * @brief Obtiene un iterador al siguiente nodo segun el recorrido en preorden
@@ -462,7 +486,9 @@ class ArbolGeneral{
 	  * @param i: iterador con el  que se compara
 	  * @return true si los dos iteradores son iguales (la raiz y el nodo son iguales). False en caso contrario
 	  * */
-	 bool operator == (const iter_preorden &i);
+	 inline bool operator == (const iter_preorden &i){
+     return (this->it == i.it && this->raiz == i.raiz);
+   }
 
 	 /**
 	  * @brief Compara dos iteradores
@@ -471,7 +497,9 @@ class ArbolGeneral{
 	  * */
 
 
-	 bool operator != (const iter_preorden &i);
+	 inline bool operator != (const iter_preorden &i){
+     return (this->it != i.it || this->raiz != i.raiz);
+   }
 
 
 	 friend class ArbolGeneral;
@@ -493,7 +521,9 @@ class ArbolGeneral{
 	  *
 	  * */
 
-	 const Tbase & operator*();
+	 inline const Tbase & operator*(){
+     return it->etiqueta;
+   }
 
 
 	 /**
@@ -502,7 +532,9 @@ class ArbolGeneral{
 	  * */
 
 
-	 int getlevel()const;
+	 inline int getlevel() const{
+     return this->level;
+   }
 
 	 /**
 	  * @brief Obtiene un iterador al siguiente nodo segun el recorrido en preorden
@@ -515,7 +547,9 @@ class ArbolGeneral{
 	  * @param i: iterador con el con que se comparación
 	  * @return true si los dos iteradores son iguales (la raiz y el nodo son iguales). False en caso contrario
 	  * */
-	 bool operator == (const const_iter_preorden &i) const;
+	 inline bool operator == (const const_iter_preorden &i) const{
+     return (this->it == i.it && this->raiz == i.raiz);
+   }
 
 	 /**
 	  * @brief Compara dos iteradores
@@ -524,7 +558,9 @@ class ArbolGeneral{
 	  * */
 
 
-	 bool operator != (const const_iter_preorden &i) const;
+	 inline bool operator != (const const_iter_preorden &i) const{
+     return (this->it != i.it || this->raiz != i.raiz);
+   }
 
 
 	 friend class ArbolGeneral;

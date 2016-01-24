@@ -93,42 +93,6 @@ void ArbolGeneral<Tbase>::AsignaRaiz(const Tbase& e){
   this->laraiz = new nodo(e, NULL, NULL, NULL);
 }
 
-//Devuelve la raiz
-template <class Tbase>
-typename ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::raiz() const{
-  return this->laraiz;
-}
-
-//Devuelve hijo mas izquierda
-template <class Tbase>
-typename ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::hijomasizquierda(const Nodo n) const{
-  return n->izqda;
-}
-
-//Devuelve hermano a la derecha
-template <class Tbase>
-typename ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::hermanoderecha(const Nodo n) const{
-  return n->drcha;
-}
-
-//Devuelve padre
-template <class Tbase>
-typename ArbolGeneral<Tbase>::Nodo ArbolGeneral<Tbase>::padre(const Nodo n) const{
-  return n->padre;
-}
-
-//Devuelve referencia a etiqueta
-template <class Tbase>
-Tbase& ArbolGeneral<Tbase>::etiqueta(const Nodo n){
-  return n->etiqueta;
-}
-
-//Devuelve referencia a etiqueta
-template <class Tbase>
-const Tbase& ArbolGeneral<Tbase>::etiqueta(const Nodo n) const{
-  return n->etiqueta;
-}
-
 //Copia arbol en subarbol
 template <class Tbase>
 void ArbolGeneral<Tbase>::asignar_subarbol(const ArbolGeneral<Tbase>& orig, const Nodo nod){
@@ -193,30 +157,6 @@ void ArbolGeneral<Tbase>::clear(){
   this->laraiz = NULL;
 }
 
-//Devuelve cantidad de nodos del arbol
-template <class Tbase>
-int ArbolGeneral<Tbase>::size() const{
-  return this->contar(this->laraiz);
-}
-
-//Comprueba si el arbol esta vacio
-template <class Tbase>
-bool ArbolGeneral<Tbase>::empty() const{
-  return this->laraiz == NULL;
-}
-
-//Comprueba si dos los arboles son iguales
-template <class Tbase>
-bool ArbolGeneral<Tbase>::operator==(const ArbolGeneral<Tbase>& v) const{
-  return this->soniguales(this->laraiz, v.laraiz);
-}
-
-//Comprueba si dos los arboles son diferentes
-template <class Tbase>
-bool ArbolGeneral<Tbase>::operator!=(const ArbolGeneral<Tbase>& v) const{
-  return !(this->soniguales(this->laraiz, v.laraiz));
-}
-
 //----ITERADOR NO CONSTANTE----------------------------------------------
 
 //Constructor del iterador
@@ -225,18 +165,6 @@ ArbolGeneral<Tbase>::iter_preorden::iter_preorden(){
   this->it = NULL;
   this->raiz = NULL;
   this->level = 0;
-}
-
-//Devuelve la etiqueta del nodo
-template <class Tbase>
-Tbase& ArbolGeneral<Tbase>::iter_preorden::operator*(){
-  return it->etiqueta;
-}
-
-//Devuelve el nivel del nodo
-template <class Tbase>
-int ArbolGeneral<Tbase>::iter_preorden::getlevel() const{
-  return this->level;
 }
 
 //Siguiente nodo
@@ -268,18 +196,6 @@ typename ArbolGeneral<Tbase>::iter_preorden& ArbolGeneral<Tbase>::iter_preorden:
    return *this;
 }
 
-//Compara la igualdad de 2 iteradores
-template <class Tbase>
-bool ArbolGeneral<Tbase>::iter_preorden::operator==(const iter_preorden &i){
-  return (this->it == i.it && this->raiz == i.raiz);
-}
-
-//Compara la desigualdad de 2 iteradores
-template <class Tbase>
-bool ArbolGeneral<Tbase>::iter_preorden::operator!=(const iter_preorden &i){
-  return (this->it != i.it || this->raiz != i.raiz);
-}
-
 //Iterator begin
 template <class Tbase>
 typename ArbolGeneral<Tbase>::iter_preorden ArbolGeneral<Tbase>::begin(){
@@ -309,18 +225,6 @@ ArbolGeneral<Tbase>::const_iter_preorden::const_iter_preorden(){
   this->level = 0;
 }
 
-//Devuelve la etiqueta del nodo
-template <class Tbase>
-const Tbase& ArbolGeneral<Tbase>::const_iter_preorden::operator*(){
-  return it->etiqueta;
-}
-
-//Devuelve el nivel del nodo
-template <class Tbase>
-int ArbolGeneral<Tbase>::const_iter_preorden::getlevel() const{
-  return this->level;
-}
-
 //Siguiente nodo
 template <class Tbase>
 typename ArbolGeneral<Tbase>::const_iter_preorden& ArbolGeneral<Tbase>::const_iter_preorden::operator++(){
@@ -348,18 +252,6 @@ typename ArbolGeneral<Tbase>::const_iter_preorden& ArbolGeneral<Tbase>::const_it
        level = 0;
    }
    return *this;
-}
-
-//Compara la igualdad de 2 iteradores
-template <class Tbase>
-bool ArbolGeneral<Tbase>::const_iter_preorden::operator==(const const_iter_preorden &i) const{
-  return (this->it == i.it && this->raiz == i.raiz);
-}
-
-//Compara la desigualdad de 2 iteradores
-template <class Tbase>
-bool ArbolGeneral<Tbase>::const_iter_preorden::operator!=(const const_iter_preorden &i) const{
-  return (this->it != i.it || this->raiz != i.raiz);
 }
 
 //Iterator begin FIXME DOCUMENTAR
