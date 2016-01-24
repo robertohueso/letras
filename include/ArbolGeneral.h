@@ -29,8 +29,8 @@ using namespace std;
    El espacio requerido para el almacenamiento es O(n), donde n es el número de
    nodos del árbol.
 
-   @author
-   @date
+   @author Roberto Hueso Gómez y Abel Sánchez Alba.
+   @date 24/01/2016
 */
 
 template <class Tbase>

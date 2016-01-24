@@ -43,7 +43,28 @@ struct info{
   info(char caracter, bool caracter_final): c(caracter), final(caracter_final){}
 };
 
-//FIXME Documentar el TDA!
+
+
+/**
+   @brief T.D.A. Diccionario
+
+   \b Definición:
+   Una instancia \e a del tipo de dato abstracto Diccionario contiene
+   un conjunto de palabras.
+
+   - rep.diccionario -> ArbolGeneral que almacena la palabra
+   letra por letra en cada uno de sus nodos que son nodos del tipo de dato info.
+   - Se deben cargar desde un archivo las palabras
+
+   Se establece una relacion de palabras entre las que se pueden iterar, buscar...etc.
+
+   Para poder usar el tipo de dato ArbolGeneral se debe incluir el fichero
+
+   <tt>\#include Diccionario.h</tt>
+
+   @author Roberto Hueso Gómez y Abel Sánchez Alba.
+   @date 24/01/2016
+*/
 
 class Diccionario{
 private:
