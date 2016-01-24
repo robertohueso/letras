@@ -139,13 +139,12 @@ Diccionario::iterator& Diccionario::iterator::operator++(){
 
 //Begin del iterator
 Diccionario::iterator Diccionario::begin(){
-  //FIXME tener en cuenta el caso en el que no hay ninguna palabra
   Diccionario::iterator iter_comienzo;
   string letra;
   iter_comienzo.it = datos.begin();
   iter_comienzo.cadena = "";
   iter_comienzo.end = this->datos.end();
-  return iter_comienzo;
+  return ++iter_comienzo;
 }
 
 //End del iterator
@@ -200,13 +199,12 @@ Diccionario::const_iterator& Diccionario::const_iterator::operator++(){
 
 //Begin del iterator
 Diccionario::const_iterator Diccionario::cbegin() const{
-  //FIXME tener en cuenta el caso en el que no hay ninguna palabra
   Diccionario::const_iterator iter_comienzo;
   string letra;
   iter_comienzo.it = datos.cbegin();
   iter_comienzo.cadena = "";
   iter_comienzo.end = this->datos.cend();
-  return iter_comienzo;
+  return ++iter_comienzo;
 }
 
 //End del iterator
