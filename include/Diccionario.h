@@ -102,58 +102,134 @@ public:
 	**/
 	friend ostream& operator<<(ostream& os, const Diccionario& D);
 
-  //FIXME DOCUMENTAR Iterator
+
   class iterator{
   private:
     ArbolGeneral<info>::iter_preorden it;
 
     string cadena;
 
+    /**
+ 	  * @brief Iterador preorden al final del arbol
+ 	  *
+ 	  * */
     ArbolGeneral<info>::iter_preorden end;
 
   public:
+    /**
+ 	  * @brief Constructor por defecto
+ 	  *
+ 	  * */
     iterator();
 
-    string operator*();
+    /**
+ 	  * @brief Obtiene la palabra del Diccionario
+ 	  *
+ 	  * */
+    inline string& operator*(){
+      return this->cadena;
+    }
 
+    /**
+ 	  * @brief Obtiene un iterador a la siguiente palabra
+ 	  *
+ 	  * */
     iterator& operator++();
 
-    bool operator==(const iterator &otro_it);
+    /**
+ 	  * @brief Compara dos iteradores
+ 	  * @param otro_it iterador con el  que se compara
+ 	  * @return True si los dos iteradores son iguales. False en caso contrario
+ 	  * */
+    inline bool operator==(const iterator &otro_it){
+      return (this->it == otro_it.it && this->cadena == otro_it.cadena);
+    }
 
-    bool operator!=(const iterator &otro_it);
+    /**
+    * @brief Compara dos iteradores
+    * @param otro_it iterador con el  que se compara
+    * @return False si los dos iteradores son iguales. True en caso contrario
+    * */
+    inline bool operator!=(const iterator &otro_it){
+      return (this->it != otro_it.it || this->cadena != otro_it.cadena);
+    }
 
     friend class Diccionario;
   };
 
-  //FIXME DOCUMENTAR Const Iterator
+
   class const_iterator{
   private:
     ArbolGeneral<info>::const_iter_preorden it;
 
     string cadena;
 
+    /**
+ 	  * @brief Iterador preorden al final del arbol
+ 	  *
+ 	  * */
     ArbolGeneral<info>::const_iter_preorden end;
 
   public:
+    /**
+ 	  * @brief Constructor por defecto
+ 	  *
+ 	  * */
     const_iterator();
 
-    string operator*() const;
+    /**
+ 	  * @brief Obtiene la palabra del Diccionario
+ 	  *
+ 	  * */
+    inline const string & operator*() const{
+      return this->cadena;
+    }
 
+    /**
+ 	  * @brief Obtiene un iterador a la siguiente palabra
+ 	  *
+ 	  * */
     const_iterator& operator++();
 
-    bool operator==(const const_iterator &otro_it) const;
+    /**
+ 	  * @brief Compara dos iteradores
+ 	  * @param otro_it iterador con el  que se compara
+ 	  * @return True si los dos iteradores son iguales. False en caso contrario
+ 	  * */
+    inline bool operator==(const const_iterator &otro_it) const{
+      return (this->it == otro_it.it && this->cadena == otro_it.cadena);
+    }
 
-    bool operator!=(const const_iterator &otro_it) const;
+    /**
+    * @brief Compara dos iteradores
+    * @param otro_it iterador con el  que se compara
+    * @return False si los dos iteradores son iguales. True en caso contrario
+    * */
+    inline bool operator!=(const const_iterator &otro_it) const{
+      return (this->it != otro_it.it || this->cadena != otro_it.cadena);
+    }
 
     friend class Diccionario;
   };
 
+  /**
+   * @brief Inicializa un iterador a la primera palabra del Diccionario.
+   */
   iterator begin();
 
+  /**
+   * @brief Inicializa un iterador a la palabra nula del Diccionario.
+   */
   iterator end();
 
+  /**
+   * @brief Inicializa un iterador a la primera palabra del Diccionario.
+   */
   const_iterator cbegin() const;
 
+  /**
+   * @brief Inicializa un iterador a la palabra nula del Diccionario.
+   */
   const_iterator cend() const;
 };
 

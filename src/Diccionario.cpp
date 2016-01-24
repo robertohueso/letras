@@ -101,11 +101,6 @@ ostream& operator<<(ostream& os, const Diccionario& D){
 //Constructor del iterador
 Diccionario::iterator::iterator(){}
 
-//Devuelve la palabra a la que apunta
-string Diccionario::iterator::operator*(){
-  return this->cadena;
-}
-
 //Pasa a la siguiente palabra
 Diccionario::iterator& Diccionario::iterator::operator++(){
   int nivel_antiguo, nivel_actual;
@@ -142,16 +137,6 @@ Diccionario::iterator& Diccionario::iterator::operator++(){
   return *this;
 }
 
-//Comprueba si 2 iteradores son iguales
-bool Diccionario::iterator::operator==(const iterator &otro_it){
-  return (this->it == otro_it.it && this->cadena == otro_it.cadena);
-}
-
-//Comprueba si 2 iteradores son diferentes
-bool Diccionario::iterator::operator!=(const iterator &otro_it){
-  return (this->it != otro_it.it || this->cadena != otro_it.cadena);
-}
-
 //Begin del iterator
 Diccionario::iterator Diccionario::begin(){
   //FIXME tener en cuenta el caso en el que no hay ninguna palabra
@@ -176,11 +161,6 @@ Diccionario::iterator Diccionario::end(){
 
 //Constructor del iterador
 Diccionario::const_iterator::const_iterator(){}
-
-//Devuelve la palabra a la que apunta
-string Diccionario::const_iterator::operator*() const{
-  return this->cadena;
-}
 
 //Pasa a la siguiente palabra
 Diccionario::const_iterator& Diccionario::const_iterator::operator++(){
@@ -216,16 +196,6 @@ Diccionario::const_iterator& Diccionario::const_iterator::operator++(){
     cadena.clear();
   }
   return *this;
-}
-
-//Comprueba si 2 iteradores son iguales
-bool Diccionario::const_iterator::operator==(const const_iterator &otro_it) const{
-  return (this->it == otro_it.it && this->cadena == otro_it.cadena);
-}
-
-//Comprueba si 2 iteradores son diferentes
-bool Diccionario::const_iterator::operator!=(const const_iterator &otro_it) const{
-  return (this->it != otro_it.it || this->cadena != otro_it.cadena);
 }
 
 //Begin del iterator
