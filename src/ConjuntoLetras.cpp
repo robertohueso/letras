@@ -8,6 +8,10 @@
 
 ConjuntoLetras::ConjuntoLetras(){}
 
+ConjuntoLetras::ConjuntoLetras(const ConjuntoLetras &otro_conjunto){
+	this->conjunto = otro_conjunto.conjunto;
+}
+
 void ConjuntoLetras::autoRepartirCantidades(){
 	double letras_totales = 0.0;
 	for(ConjuntoLetras::iterator it = this->begin(); it != this->end(); ++it)

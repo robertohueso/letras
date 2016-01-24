@@ -64,6 +64,11 @@ public:
   ConjuntoLetras();
 
   /**
+    *@brief Constructor de copia
+  */
+  ConjuntoLetras(const ConjuntoLetras &otro_conjunto);
+
+  /**
     *@brief Inserta una letra (Si ya existe, aumenta la cantidad de la letra)
     *
     *@param nueva_letra Letra a insertar
