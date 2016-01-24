@@ -11,7 +11,27 @@ using namespace std;
 #ifndef __CONJUNTO_LETRAS_H__
 #define __CONJUNTO_LETRAS_H__
 
-//FIXME Documentar TDA
+/**
+   @brief T.D.A. ConjuntoLetras
+
+   \b Definición:
+   Una instancia \e a del tipo de dato abstracto ConjuntoLetras contiene
+   un conjunto de objetos de tipo Letra
+
+   - rep.conjunto -> map con el char de la letra y el objeto Letra
+   letra por letra en cada uno de sus nodos que son nodos del tipo de dato info.
+   - Las letras no estarán repetidas
+
+   Se establece una relacion de Letras organizadas por su caracter.
+
+   Para poder usar el tipo de dato ConjuntoLetras se debe incluir el fichero
+
+   <tt>\#include ConjuntoLetras.h</tt>
+
+   @author Roberto Hueso Gómez y Abel Sánchez Alba.
+   @date 24/01/2016
+*/
+
 class ConjuntoLetras{
 private:
   /**

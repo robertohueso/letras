@@ -58,7 +58,7 @@ struct info{
 
    Se establece una relacion de palabras entre las que se pueden iterar, buscar...etc.
 
-   Para poder usar el tipo de dato ArbolGeneral se debe incluir el fichero
+   Para poder usar el tipo de dato Diccionario se debe incluir el fichero
 
    <tt>\#include Diccionario.h</tt>
 
