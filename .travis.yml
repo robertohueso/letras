@@ -3,7 +3,7 @@ language: cpp
 compiler: gcc
 
 before_script:
-  -mkdir obj
-  -mkdir bin
+  - mkdir obj
+  - mkdir bin
   
 script: make
