@@ -1,4 +1,5 @@
 # Letras
+[![Build Status](https://travis-ci.org/robertohueso/letras.svg?branch=master)](https://travis-ci.org/robertohueso/letras)
 
 Práctica final para la asignatura Estructuras de Datos
 
